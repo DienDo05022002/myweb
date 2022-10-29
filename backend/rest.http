@@ -1,0 +1,40 @@
+###Test sever: api/v1/index.js
+GET http://localhost:3010/v1
+
+### Products/ Get-all
+GET http://localhost:3010/v1/products
+
+###
+GET http://localhost:3010/v1/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjcwMzIxMzl9.giT1K0lg972prmaa7_KQBIlhCK4g5llcGN9cN9_DIoY
+
+###
+Get http://localhost:3010/v1/orders/text
+
+###Product/:id
+GET http://localhost:3010/v1/product/6355102fd52d234f4cf84845
+
+
+###   
+GET http://localhost:3010/v1/upload
+
+### LOGIN
+POST http://localhost:3010/v1/login
+Content-Type: application/json
+
+{
+    "email": "dien@gmail.com",
+    "password": "dienkute1245"
+}
+
+### REGISTER
+POST http://localhost:3010/v1/register
+Content-Type: application/json
+
+{
+    "name": "dien",
+    "password": "dienkute1245",
+    "email": "dien@gmail.com",
+    "isAdmin": false
+    
+}

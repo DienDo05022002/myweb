@@ -1,0 +1,16 @@
+.login-img {
+    display: flex;
+}
+.login-small-container {
+
+}
+.container-login {
+    display: flex;
+    margin: 10px 50px;
+}
+.login-item-img {
+    width: 60%;
+}
+.fa-shopping-cart {
+    color: rgba(245, 245, 245, 0.815)
+}
