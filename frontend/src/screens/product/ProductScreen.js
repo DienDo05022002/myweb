@@ -68,33 +68,34 @@ function ProductScreen() {
       <Row className="row-detail">
         <Col md={6}>
           <img
-            src={productDetail.image}
-            alt={productDetail.name}
+            src={productDetail?.image}
+            alt={productDetail?.name}
             className="img-large"
           />
-          <p>{productDetail.name}</p>
+          <p>{productDetail?.name}</p>
         </Col>
         <Col md={4}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>{productDetail.name}</h2>
+              <h2>{productDetail?.name}</h2>
             </ListGroup.Item>
             <div>
-              <Card.Title>{productDetail.name}</Card.Title>
+              <Card.Title>{productDetail?.name}</Card.Title>
+              <Card.Title>{productDetail?.discount}{'.000'}</Card.Title>
               <Card.Text className="title-product">
-                <p>Giá: ${productDetail.price}</p>
+                <p>Giá: {productDetail?.price}{'.000'}</p>
               </Card.Text>
             </div>
             <div>
               <Rating
-                rating={productDetail.rating}
-                numReviews={productDetail.numReviews}
+                rating={productDetail?.rating}
+                numReviews={productDetail?.numReviews}
                 className="rating"
               />
             </div>
             <Card.Text>
-              <p>Mô tả: {productDetail.description}</p>
-              <p>Tích poin: {productDetail.countIn} poin</p>
+              <p>Mô tả: {productDetail?.description}</p>
+              <p>Tích poin: {productDetail?.countIn} poin</p>
             </Card.Text>
             <ListGroup.Item>
               <div className="d-grid">

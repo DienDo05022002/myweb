@@ -1,30 +1,78 @@
 ###Test sever: api/v1/index.js
 GET http://localhost:3010/v1
 
+########################################################################
+#########     Products
+########################################################################
+
 ### Products/ Get-all
 GET http://localhost:3010/v1/products
 
+###Product/:id
+GET http://localhost:3010/v1/product/6355102fd52d234f4cf84845
+
+### Products/ Get-by-category for combo
+GET http://localhost:3010/v1/Category-combo
+
+### Products/ Get-by-category for single
+GET http://localhost:3010/v1/Category-single
+
+########################################################################
+########## END
+########################################################################
+
+########################################################################
+########## ORDERS
+########################################################################
+
+### lấy tất cả order ra theo người mua
+GET http://localhost:3010/v1/History-orders-by-user
+
 ###
-GET http://localhost:3010/v1/orders
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjcwMzIxMzl9.giT1K0lg972prmaa7_KQBIlhCK4g5llcGN9cN9_DIoY
+Get http://localhost:3010/v1/History-orders
 
 ###
 Get http://localhost:3010/v1/orders/text
-
-###Product/:id
-GET http://localhost:3010/v1/product/6355102fd52d234f4cf84845
 
 
 ###   
 GET http://localhost:3010/v1/upload
 
-### LOGIN
+### Products/ Get-history-orders
+GET http://localhost:3010/v1/History-orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGMyMmMyYmZjMWJmNDY5MzQ0ZDkiLCJyb2xlSWQiOiJ1c2VyIiwiaWF0IjoxNjY3Mzc0Mjc0fQ.rM293__jvGGye3IZYsnkUjxqVnvuifvncq9T05_KTVI
+
+
+###
+GET http://localhost:3010/v1/textorder
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVmYTE2OWNjYzc5ZmU1NmJkODk2NmIiLCJpYXQiOjE2NjcyMTIxNjl9.yLzzd77VjMid--40W8BW9NKx16_su0E17TWgiRpJ00I
+
+###
+POST http://localhost:3010/v1/orders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVmYTE2OWNjYzc5ZmU1NmJkODk2NmIiLCJpYXQiOjE2NjcyMTIxNjl9.yLzzd77VjMid--40W8BW9NKx16_su0E17TWgiRpJ00I
+
+{
+    "user":"dien@gmail.com"
+}
+
+
+### LOGIN/admin
 POST http://localhost:3010/v1/login
 Content-Type: application/json
 
 {
     "email": "dien@gmail.com",
-    "password": "dienkute1245"
+    "password": "123"
+}
+
+###LOGIN/user
+POST http://localhost:3010/v1/login
+Content-Type: application/json
+
+{
+    "email": "dien05022002@gmail.com",
+    "password": "123"
 }
 
 ### REGISTER
@@ -33,8 +81,66 @@ Content-Type: application/json
 
 {
     "name": "dien",
-    "password": "dienkute1245",
-    "email": "dien@gmail.com",
-    "isAdmin": false
+    "password": "123",
+    "email": "dien05022002@gmail.com",
+    "roleId": "user"
     
 }
+
+
+########################################################################
+########## ADMIN/user
+########################################################################
+
+### getAll
+GET http://localhost:3010/v1/getAllUsers
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM3MzAyOH0.X9PLhCHytYtFgcgCKgGW6R9n2qkoFfU5FYP-PXoqhSk
+
+
+
+### text verifyAdim
+GET http://localhost:3010/v1/getAllUsers/text
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxM2JiNjc4M2MzYTE2ODBlYTc4ZjIiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzMyMjk4MX0.D2IkgEEXs6ro69sAnCoTkEjFBzsRWIAYQe3k3M_4eck
+
+### getById
+GET http://localhost:3010/v1/getUsers/63614bcbd1eb265c5487a491
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxM2JiNjc4M2MzYTE2ODBlYTc4ZjIiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM0ODYxOX0.mRwckQZNOhaEp8MAqYhVRZaerg6f6k57jsk7lEb0TIk
+
+### updataUser
+PATCH  http://localhost:3010/v1/updataUsers/63613bb6783c3a1680ea78f2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxM2JiNjc4M2MzYTE2ODBlYTc4ZjIiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM0OTQ4NX0.oKMSBxioWgp6dsrvJl7GsUIawtdyzLg2bT06bVDjtko
+
+{
+    "name": "dien1234",
+    "password": "123",
+    "email": "dien1234@gmail.com",
+    "roleId": "user"
+    
+}
+
+### updataUser
+PATCH  http://localhost:3010/v1/updataUsers/63614bcbd1eb265c5487a491
+
+{
+    "name": "dien0502",
+    "password": "123",
+    "email": "dien05022002@gmail.com",
+    "roleId": "user"
+    
+}
+
+########################################################################
+########## ADMIN/Products
+### Products/ Get-all
+GET http://localhost:3010/v1/admin/getProducts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM3MzAyOH0.X9PLhCHytYtFgcgCKgGW6R9n2qkoFfU5FYP-PXoqhSk
+
+
+### Products/ Get-byId
+GET http://localhost:3010/v1/admin/getByIdProducts/6361cf23415046d812ce6d39
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM1Mzg1MH0.qfRRsnxSVKQ1TzteWhrxK3wZhe6q8FiFyky3uIWzHeE

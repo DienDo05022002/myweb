@@ -100,7 +100,7 @@ main {
 /* Map */
 
 .full-box {
-  height: 100vh;
+  /* height: 100vh; */
   max-width: initial;
 }
 .full-box header,
@@ -185,7 +185,9 @@ button.thumbnail {
   width: 180px
 }
 .header-nav-icon {
-
+  color: white;
+  margin-top: 7px;
+  cursor: pointer;
 }
 .header-nav-button-home {
   color: white;

@@ -2,7 +2,7 @@ import React from 'react'
 
 const SlideShow = () => {
   return (
-    <div>SlideShow</div>
+    <div style={{backgroundColor: 'red'}}>SlideShow</div>
   )
 }
 

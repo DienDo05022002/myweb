@@ -1,6 +1,7 @@
 const express = require('express');
 var router = express.Router();
 
+router.use(require('./router/admin'))
 router.use(require('./router/user'))
 router.use(require('./router/product'))
 router.use(require('./router/upload'))

@@ -37,7 +37,10 @@ function toCart(state, action) {
     }
     //save information shipping address
     case 'SHIPPING_ADDRESS': 
-      return {...state, cart: {...state.cart , shippingAddress: action.payload}}
+      return {...state, cart: {...state.cart , shippingAddress: action.payload}};
+    //clear cart
+    case 'CLEAR_CART':
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     default:
       return state;
   }

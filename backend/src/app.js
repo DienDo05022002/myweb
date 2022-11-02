@@ -6,6 +6,7 @@ const path = require('path');
 var morgan = require('morgan');
 var helmet = require('helmet');
 var createError = require('http-errors');
+var bodyParser = require('body-parser')
 require('dotenv').config();
 
 const severRoute = require('./api/index');
@@ -22,6 +23,7 @@ mongoose
 app.use(morgan('combined'));
 app.use(helmet());
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, './public')));
 
 // app.use(cors());
@@ -30,6 +32,8 @@ app.use(
     origin: '*',
   }),
 );
+
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(require('./api', severRoute));
 

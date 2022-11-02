@@ -15,22 +15,26 @@ import PaymentScreen from './screens/pay/PaymentScreen';
 import PlaceOrderScreen from './screens/pay/PlaceOrderScreen';
 import Footer from './layout/Footer';
 import SlideShow from './layout/SlideShow';
+import HistoryOrders from './screens/client/auth/HistoryOrders';
+import AdminLogin from './screens/admin/AdminLogin';
+import DashBoard from './screens/admin/DashBoard';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
         <ToastContainer position="bottom-center" limit={1} />
-        <header className="header">
+        {/* <header className="header">
           <Container>
             <LinkContainer to="/">
                 <NavBar />
               </LinkContainer>
           </Container>
-        </header>
-        <Container className="small-container">
+        </header> */}
+        <NavBar />
+        <div>
           <SlideShow/>
-        </Container>
+        </div>
         <Routes>
           <Route path="/" element={<HomeScreen />}></Route>
           <Route path="/product/:slug" element={<ProductScreen />}></Route>
@@ -40,6 +44,11 @@ function App() {
           <Route path="/ship-address" element={<ShipScreen />}></Route>
           <Route path="/payment" element={<PaymentScreen />}></Route>
           <Route path="/place-order" element={<PlaceOrderScreen />}></Route>
+          <Route path="/history-order" element={<HistoryOrders />}></Route>
+
+          <Route path="/admin-login" element={<AdminLogin />}></Route>
+          <Route path="/dash-board" element={<DashBoard />}></Route>
+          
         </Routes>
         <footer>
           <Footer/>

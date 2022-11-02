@@ -91,6 +91,13 @@ function Login() {
           <div />
         </form>
       </Container>
+      
+    <div>
+        <p>You are Admin pages</p>
+        <Button>
+            <Link to='/admin-login'>Login</Link>
+        </Button>
+    </div>
     </div>
   );
 }

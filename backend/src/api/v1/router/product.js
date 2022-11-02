@@ -5,6 +5,7 @@ const Main = require('../models/mainModel');
 const path = require('path');
 const upload = require('../middlewares/multerUpload');
 const cloudinary = require('../middlewares/cloudinary')
+const verifyToken = require('../middlewares/verifyToken');
 // MULTER UPLOAD
 const multer = require('multer');
 
@@ -55,6 +56,7 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
     category,
     image,
     price,
+    discount,
     countIn,
     rating,
     numReviews,
@@ -66,6 +68,7 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
     category,
     image: file?.path,
     price,
+    discount,
     countIn,
     rating,
     numReviews,
@@ -80,4 +83,26 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
   res.status(201).json({ file: req.file, product });
 });
 
+//------------------------------------------------------------------------------------------------------------------------------
+//   Get By Category
+//------------------------------------------------------------------------------------------------------------------------------
+
+router.get('/Category-combo', async (req, res, next) => {
+  try {
+      const product = await Product.find({ "category": "combo" })//.populate('user')
+      res.json({product })
+  } catch (error) {
+      console.log(error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+});
+router.get('/Category-single', async (req, res, next) => {
+  try {
+      const product = await Product.find({ "category": "single" })//.populate('user')
+      res.json({product })
+  } catch (error) {
+      console.log(error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+});
 module.exports = router;

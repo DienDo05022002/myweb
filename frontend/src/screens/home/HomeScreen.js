@@ -17,6 +17,7 @@ function HomeScreen() {
       try {
         const res = await http.get('/products');
         setProducts(res.data);
+        console.log(res.data)
       } catch (err) {
         if (err.res) {
           console.log(err.res.data.message);

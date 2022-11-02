@@ -1,26 +1,32 @@
 const jwt = require("jsonwebtoken");
 
-const verifyToken = (req, res, next) => {
+const isAdmin = (req, res, next) => {
   const authHeader = req.header("Authorization");
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token)
-    return res.status(401).json({
+    return res.status(500).json({
       success: false,
       message: "User is not login !!!",
     });
+
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN);
-
+    if (decoded.roleId !== "admin")
+      return res.status(400).json({
+        success: false,
+        message: "You need Admin role !!!",
+      });
     req.userId = decoded.userId;
     console.log(req.userId)
     next();
   } catch (error) {
-    res.status(403).json({
+    return res.status(500).json({
       success: false,
       message: "Token not found !!!",
+      error,
     });
   }
 };
 
-module.exports = verifyToken;
+module.exports = isAdmin;

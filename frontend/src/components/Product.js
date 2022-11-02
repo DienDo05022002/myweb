@@ -38,7 +38,7 @@ function Product({ product }) {
               <Card.Title>{product.name}</Card.Title>
             </Link>
             <Rating rating={product.rating} numReviews={product.numReviews} />
-            <Card.Text className="title-product">${product.price}</Card.Text>
+            <Card.Text className="title-product">{product.price}{'.000'}</Card.Text>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button
                 variant="primary"
