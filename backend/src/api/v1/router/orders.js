@@ -53,7 +53,23 @@ router.get('/orders', verifyToken, async (req, res, next) => {
   }
 });
 
+router.get('/orders/:id', verifyToken, async (req, res, next) => {
+  const _id = req.params.id;
+  try {
+    const order = await Orders.findOne({ _id: _id });
 
+    return res.json({
+      // success: true,
+      order,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server not found!",
+    });
+  }
+});
 
 
 

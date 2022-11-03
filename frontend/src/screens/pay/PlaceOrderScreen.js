@@ -72,8 +72,9 @@ const PlaceOrderScreen = () => {
       if(res.data.success)
       console.log(res.data.success)
       // dispatch({type:'CLEAR_CART'})
-      // localStorage.removeItem('cartItems')
-      navigate(`/orders/${res.order._id}`)
+      localStorage.removeItem('cartItems')
+      // navigate(`/orders/${res.order._id}`)
+      navigate('/thankyou')
     } catch (error) {
       console.log(error);
     }

@@ -9,6 +9,8 @@ import {
 } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import Container from 'react-bootstrap/Container';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 import Nav from 'react-bootstrap/Nav';
 import Badge from 'react-bootstrap/Badge';
 import { useContext } from 'react';
@@ -18,21 +20,21 @@ import Register from '../screens/client/auth/Register';
 import CartScreen from '../screens/cart/CartScreen';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import Button from 'react-bootstrap/Button';
-
+import { toast } from 'react-toastify';
+import http from '../api/axiosApi'
+import Search from './Search'
 function NavBar() {
   const storeUser = localStorage.getItem('user');
-  console.log(storeUser);
   //set cart
   const state = useContext(Store);
   const dispatch = useContext(Store);
-  console.log(dispatch);
   const {
     state: { cart },
   } = state;
-  console.log({ state: { cart } });
+  // console.log({ state: { cart } });
 
   const navigate = useNavigate();
   const logOut = () => {
@@ -44,6 +46,17 @@ function NavBar() {
   };
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+
+  const sideBarCategories = async () => {
+      try {
+        const res = await http.get('/Category-sideBar')
+        setCategories(res)
+      } catch(err) {
+        toast.error('')
+      }
+    }
+    console.log(categories)
+    // sideBarCategories()
   return (
     <div>
       <div
@@ -72,11 +85,29 @@ function NavBar() {
                   <Link to="/" className="header-nav-button-home">
                     Trang chu
                   </Link>
-                  <div>Tìm kiếm</div>
+
+
+
+
+
+                  <div>
+                    <InputGroup className='input-search'>
+                    <Button>
+                      <i className="fas fa-search"></i>
+                    </Button>
+                       <FormControl></FormControl>
+                    </InputGroup>
+                  </div>
+
+
+
+
+
+
+
                 </div>
                 <div className="header-nav-user">
-                  <Link to="/cart">
-                    Giỏ
+                  <Link to="/cart" style={{paddingTop: '6px'}}>
                     <i className="fas fa-shopping-cart fa-shopping-cart-color"></i>
                     {cart.cartItem.length > 0 && (
                       <Badge pill bg="danger">
@@ -94,11 +125,11 @@ function NavBar() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu variant="dark">
-                        <Link to="/history-order">
-                          Lịch sử mua hàng
-                        </Link>
                         <Dropdown.Item href="#/action-3">
-                          Something else
+                          <Link to="/history-order">Lịch sử mua hàng</Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">
+                          <Link to="/profile">Tài khoản</Link>
                         </Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item href="#/action-4" onClick={logOut}>
@@ -118,6 +149,8 @@ function NavBar() {
           </LinkContainer>
         </Container>
       </header>
+
+  {/* ------------------------Show side bar------------------------ */}
       <div
         className={
           sidebarIsOpen
@@ -126,8 +159,14 @@ function NavBar() {
         }
       >
         <Nav className="flex-column text-white w-100 p-2">
+          <button onClick={() => sideBarCategories()} ></button>
+          {/* <Button onClick={() => setSidebarIsOpen(!sidebarIsOpen)}></Button> */}
           <Nav.Item>
-            <strong>Categories</strong>
+            {categories.map((category) => (
+              <strong>{category}</strong>
+
+
+            ))}
           </Nav.Item>
         </Nav>
       </div>

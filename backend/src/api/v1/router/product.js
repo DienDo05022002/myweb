@@ -87,6 +87,16 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
 //   Get By Category
 //------------------------------------------------------------------------------------------------------------------------------
 
+router.get('/Category-sideBar', async (req, res, next) => {
+  try {
+      const product = await Product.find().distinct('category')
+      res.json(product)
+  } catch (error) {
+      console.log(error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+});
+
 router.get('/Category-combo', async (req, res, next) => {
   try {
       const product = await Product.find({ "category": "combo" })//.populate('user')
@@ -105,4 +115,37 @@ router.get('/Category-single', async (req, res, next) => {
       res.status(500).json({ success: false, message: 'Internal server error' })
   }
 });
+
+router.get('/search/find', async (req, res, next) => {
+  const searchTerm = req.query.q;
+  if (!searchTerm.trim()) {
+    return res.status(400).json({
+      success: false,
+      message: "Missing paramaters!",
+    });
+  }
+
+  try {
+    const textReg = new RegExp(searchTerm, "i");
+    const results = await Product.find({
+      name: textReg,
+    });
+
+    return res.json({
+      success: true,
+      results,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server not found!",
+    });
+  }
+});
+
+//------------------------------------------------------------------------------------------------------------------------------
+//   Search
+//------------------------------------------------------------------------------------------------------------------------------
+
 module.exports = router;

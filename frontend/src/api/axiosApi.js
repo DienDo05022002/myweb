@@ -14,9 +14,9 @@ http.interceptors.request.use(async (req) => {
   if (authTokens) {
     authTokens = localStorage.getItem('tokens') || null;
     req.headers.Authorization = `Bearer ${authTokens}`;
-    console.log(authTokens)
+    // console.log(authTokens)
   }
-  console.log(req);
+  // console.log(req);
   return req;
 });
 export default http;

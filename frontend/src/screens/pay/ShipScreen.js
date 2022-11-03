@@ -21,11 +21,7 @@ const ShipScreen = () => {
     cart: { shippingAddress },
   } = state;
 
-  // const storeshippingAddress = localStorage.getItem('shippingAddress');
-  // const storePhone = localStorage.getItem('phone');
-  // const storeAddress = localStorage.getItem('address');
   const [fullName, setFullName] = useState(shippingAddress.fullName || '');
-  // const [email, setEmail] = useState(storeUser || '');
   const [phone, setPhone] = useState(shippingAddress.phone || '');
   const [address, setAddress] = useState(shippingAddress.address || '');
 

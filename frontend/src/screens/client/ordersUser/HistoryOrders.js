@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 import { useState, useReducer, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';

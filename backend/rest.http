@@ -11,6 +11,12 @@ GET http://localhost:3010/v1/products
 ###Product/:id
 GET http://localhost:3010/v1/product/6355102fd52d234f4cf84845
 
+
+###########################
+########## PRODUCT/CATEGORY
+### Products/ Category side bar
+GET http://localhost:3010/v1/Category-sideBar
+
 ### Products/ Get-by-category for combo
 GET http://localhost:3010/v1/Category-combo
 
@@ -44,8 +50,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxN
 
 
 ###
-GET http://localhost:3010/v1/textorder
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVmYTE2OWNjYzc5ZmU1NmJkODk2NmIiLCJpYXQiOjE2NjcyMTIxNjl9.yLzzd77VjMid--40W8BW9NKx16_su0E17TWgiRpJ00I
+GET http://localhost:3010/v1/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGMyMmMyYmZjMWJmNDY5MzQ0ZDkiLCJyb2xlSWQiOiJ1c2VyIiwiaWF0IjoxNjY3Mzk3MjgzfQ.tXN_cmReqOoq2sm0xZQQ4F3dQkFGXrNELka-oiLrZf8
 
 ###
 POST http://localhost:3010/v1/orders

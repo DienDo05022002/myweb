@@ -9,6 +9,7 @@ import BannerScreen from '../banner/BannerScreen';
 import Product from '../../components/Product';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import SlideShow from '../../layout/SlideShow';
 
 function HomeScreen() {
   const [products, setProducts] = useState([]);
@@ -30,7 +31,10 @@ function HomeScreen() {
   }, []);
   return (
     <div>
-      <h1>Products</h1>
+      <div>
+          <SlideShow/>
+        </div>
+      <h1>Sản phẩm tại quán</h1>
       {/* <BannerScreen /> */}
       <div className="products">
         <Row>
