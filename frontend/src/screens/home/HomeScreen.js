@@ -35,7 +35,6 @@ function HomeScreen() {
           <SlideShow/>
         </div>
       <h1>Sản phẩm tại quán</h1>
-      {/* <BannerScreen /> */}
       <div className="products">
         <Row>
           {products.map((product , index) => (

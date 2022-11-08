@@ -17,3 +17,18 @@
 .HOButton {
     background-color: rgb(179, 178, 178)
 }
+.admin-login {
+    margin-left: 50px;
+    margin-top: 100px;
+}
+.admin-title-login {
+
+}
+.admin-bt-login {
+    margin-left: 50px;
+    color:rgba(255, 0, 0, 0.596)
+}
+.admin-link-login {
+    color: antiquewhite;
+    text-decoration: none;
+}

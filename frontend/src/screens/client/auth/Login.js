@@ -42,7 +42,8 @@ function Login() {
   };
 
   return (
-    <div className="container-login">
+    <div>
+      <div className="container-login">
       <div className="login-img">
         <img
           className="w-[100px] aspect-auto mx-auto login-item-img"
@@ -91,11 +92,11 @@ function Login() {
           <div />
         </form>
       </Container>
-      
-    <div>
-        <p>You are Admin pages</p>
-        <Button>
-            <Link to='/admin-login'>Login</Link>
+      </div>
+    <div className='admin-login'>
+        <strong className='admin-title-login'>You are Admin pages</strong>
+        <Button className='admin-bt-login'>
+            <Link to='/admin-login' className='admin-link-login'>Login</Link>
         </Button>
     </div>
     </div>

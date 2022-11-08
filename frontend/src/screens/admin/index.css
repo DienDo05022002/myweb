@@ -1,0 +1,27 @@
+.p-container {
+    margin: 10px 30px;
+}
+.p-container-product {
+
+}
+.p-container-name {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    margin-left: 10px;
+
+}
+.p-container-bt {
+    margin: 0 10px;
+}
+.p-container-create-new {
+    display: flex;
+    justify-content: center;
+}
+.p-container-create-new-bt {
+    width: 55px;
+    border: none;
+}
+.p-container-new {
+    margin-right: 10px;
+}

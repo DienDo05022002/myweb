@@ -49,12 +49,10 @@ router.post('/main/product', async (req, res, next) => {
 });
 router.post('/products', cloudinary.single('file'), async (req, res, next) => {
   const file = req.file;
-  // const data = req.body;
   const {
     name,
     slug,
     category,
-    image,
     price,
     discount,
     countIn,
@@ -133,7 +131,7 @@ router.get('/search/find', async (req, res, next) => {
 
     return res.json({
       success: true,
-      results,
+      results:results,
     });
   } catch (error) {
     console.log(error);
@@ -144,6 +142,9 @@ router.get('/search/find', async (req, res, next) => {
   }
 });
 
+router.get('/search/text', (req, res, next) => {
+  const searchTerm = req.query.q;
+});
 //------------------------------------------------------------------------------------------------------------------------------
 //   Search
 //------------------------------------------------------------------------------------------------------------------------------

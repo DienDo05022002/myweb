@@ -11,6 +11,8 @@ const initialState = {
     shippingAddress: localStorage.getItem('shippingAddress') //information user fill
     ? JSON.parse(localStorage.getItem('shippingAddress'))
     : [],
+
+    fullBox: false,
   }
 };
 function toCart(state, action) {

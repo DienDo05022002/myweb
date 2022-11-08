@@ -15,9 +15,9 @@ const Search = () => {
     }
   return (
     <Form className='d-flex me-auto' onSubmit={submitHandler}>
-        <InputGroup>
-             <FormControl></FormControl>
-        </InputGroup>
+        {/* <InputGroup> */}
+             {/* <FormControl></FormControl> */}
+        {/* </InputGroup> */}
     </Form>
   )
 }

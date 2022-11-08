@@ -13,8 +13,9 @@ main {
 }
 .btn-primary,
 .btn-outline-primary {
-  background-color: #f0c040;
-  color: #000000;
+  /* background-color: #f0c040;
+  color: #000000; */
+  background-color: rgba(255, 0, 0, 0.849);
 }
 .title-product {
   color: black;
@@ -198,4 +199,17 @@ button.thumbnail {
     text-decoration: none;
     margin-left: 10px;
     margin-top: 5px;
+}
+.search-img-product {
+  width:80px
+}
+.search-name-product {
+  margin-left:10px;
+  text-decoration: none;
+  color: orange;
+}
+
+.search-link {
+  padding: 10px;
+  display:flex
 }

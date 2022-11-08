@@ -101,7 +101,7 @@ Content-Type: application/json
 ### getAll
 GET http://localhost:3010/v1/getAllUsers
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM3MzAyOH0.X9PLhCHytYtFgcgCKgGW6R9n2qkoFfU5FYP-PXoqhSk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzgzMDM3Nn0.SxOvSetkVdr48m6tyHkvIn9ifhGRPKeQlPVGrCOLwp4
 
 
 
@@ -143,7 +143,7 @@ PATCH  http://localhost:3010/v1/updataUsers/63614bcbd1eb265c5487a491
 ### Products/ Get-all
 GET http://localhost:3010/v1/admin/getProducts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM3MzAyOH0.X9PLhCHytYtFgcgCKgGW6R9n2qkoFfU5FYP-PXoqhSk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2Nzg4MjI0MX0.EJdQr_7TywaO6Iu-0-V8AF1PlM-7B9KMIBBDoCYE9nU
 
 
 ### Products/ Get-byId

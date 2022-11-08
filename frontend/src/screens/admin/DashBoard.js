@@ -1,37 +1,61 @@
 import React from 'react';
+import { useState, useReducer, useEffect } from 'react';
+import Row from 'react-bootstrap/Row'
+import { Link } from 'react-router-dom';
+import http from '../../api/axiosApi';
 
 const DashBoard = () => {
-    const dashBoard = [
-        {
-          name: "Products",
-        //   count: totalProduct || 0,
-          icon: "bx bx-code-alt",
-        },
-        {
-          name: "Users",
-        //   count: totalUsers || 0,
-          icon: "bx bx-user",
-        },
-        {
-          name: "Order",
-        //   count: totalOrder || 0,
-          icon: "bx bx-barcode",
-        },
-      ];
+      const [products, setProducts] = useState([]);
+      const [user, setUser] = useState([]);
+      useEffect(() => {
+        const results = async () => {
+          try {
+            const res = await http.get('/admin/getProducts');
+            setProducts(res.data);
+            console.log(res.data)
+          } catch (err) {
+            if (err.res) {
+              console.log(err.res.data.message);
+            } else {
+              console.log('Error: Network Error');
+            }
+          }
+        };
+        results();
+      }, []);
+
+
+      useEffect(() => {
+        const results = async () => {
+          try {
+            const res = await http.get('/getAllUsers');
+            setUser(res.data);
+            console.log(res.data)
+          } catch (err) {
+            if (err.res) {
+              console.log(err.res.data.message);
+            } else {
+              console.log('Error: Network Error');
+            }
+          }
+        };
+        results();
+      }, []);
   return (
     <div>
-    <div className="p-3 grid lg:grid-cols-3 gap-6 md:grid-cols-2 sm:grid-cols-2 grid-cols-1">
-      {dashBoard.map((p) => (
-        <div
-          key={p.name}
-          className="bg-[#ffd400] rounded-md px-2 py-4 flex-col flex items-center text-white"
-        >
-          <i className={`${p.icon} text-2xl`}>1</i>
-          <p className="text-2xl font-semibold my-4">{p.count}2</p>
-          <p className="text-2xl font-semibold">{p.name}3</p>
-        </div>
-      ))}
-    </div>
+      <div style={{display: 'flex'}}>
+        <strong>Sp</strong>
+        <div>{products.totalProducts}</div>
+        <div>{products.totalPage}</div>
+        <Link to={'/admin-page/users'}>Xem</Link>
+      </div>
+
+      <div style={{display: 'flex'}}>
+        <strong>Sp</strong>
+        <div>{user.totalUsers}</div>
+        <div>{user.totalPage}</div>
+        <Link to={'/admin-page/products'}>Xem</Link>
+      </div>
     </div>
   );
 };

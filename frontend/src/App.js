@@ -22,6 +22,9 @@ import DashBoard from './screens/admin/DashBoard';
 import Thankyou from './screens/Thankyou';
 import OrderScreen from './screens/client/ordersUser/OrderScreen';
 import ProfileUser from './screens/client/ProfileUser';
+import AdminPageProducts from './screens/admin/productsAM/AdminPageProducts.js';
+import Create from './screens/admin/productsAM/Create';
+import AdminPageUsers from './screens/admin/usersAM/AdminPageUsers';
 
 function App() {
   return (
@@ -45,9 +48,13 @@ function App() {
           <Route path="/order/:id" element={<OrderScreen />}></Route>
           <Route path="/profile" element={<ProfileUser />}></Route>
           <Route path="/thankyou" element={<Thankyou />}></Route>
+          <Route path="/search" element={<Search />}></Route>
 
           <Route path="/admin-login" element={<AdminLogin />}></Route>
           <Route path="/dash-board" element={<DashBoard />}></Route>
+          <Route path="/admin-page/products" element={<AdminPageProducts />}></Route>
+          <Route path="/admin-page/users" element={<AdminPageUsers />}></Route>
+          <Route path="/admin-page/create" element={<Create />}></Route>
           
         </Routes>
         <footer>
