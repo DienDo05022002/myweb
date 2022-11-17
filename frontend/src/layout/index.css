@@ -32,3 +32,31 @@
   .input-search {
     margin-left: 30px;
   }
+.selectCategory {
+  display: flex;
+  justify-content: right;
+  margin-right: 10%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.nav-link {
+  color: antiquewhite;
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+.close-nav {
+  background-color:antiquewhite;
+  padding: 5px;
+  /* transition: color .15s ease-in-out;
+  background-color: .15s ease-in-out;
+  border-color: .15s ease-in-out; */
+}
+.dropdown-search {
+  position: absolute;
+  background-color: rgb(245, 222, 179);
+  margin-top: 41px;
+  z-index:99
+}

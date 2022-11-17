@@ -12,7 +12,6 @@ const DashBoard = () => {
           try {
             const res = await http.get('/admin/getProducts');
             setProducts(res.data);
-            console.log(res.data)
           } catch (err) {
             if (err.res) {
               console.log(err.res.data.message);
@@ -30,7 +29,6 @@ const DashBoard = () => {
           try {
             const res = await http.get('/getAllUsers');
             setUser(res.data);
-            console.log(res.data)
           } catch (err) {
             if (err.res) {
               console.log(err.res.data.message);
@@ -41,20 +39,21 @@ const DashBoard = () => {
         };
         results();
       }, []);
+      console.log(products)
   return (
     <div>
       <div style={{display: 'flex'}}>
-        <strong>Sp</strong>
+        <strong>Products</strong>
         <div>{products.totalProducts}</div>
-        <div>{products.totalPage}</div>
-        <Link to={'/admin-page/users'}>Xem</Link>
+        {/* <div>{products.totalPage}</div> */}
+        <Link to={'/admin-page/products'}>Xem</Link>
       </div>
 
       <div style={{display: 'flex'}}>
-        <strong>Sp</strong>
+        <strong>Users</strong>
         <div>{user.totalUsers}</div>
-        <div>{user.totalPage}</div>
-        <Link to={'/admin-page/products'}>Xem</Link>
+        {/* <div>{user.totalPage}</div> */}
+        <Link to={'/admin-page/users'}>Xem</Link>
       </div>
     </div>
   );

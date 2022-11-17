@@ -83,7 +83,7 @@ function ProductScreen() {
               <Card.Title>{productDetail?.name}</Card.Title>
               <Card.Title>{productDetail?.discount}{'.000'}</Card.Title>
               <Card.Text className="title-product">
-                <p>Giá: {productDetail?.price}{'.000'}</p>
+                <p>Giá: <span className='icon-price'>₫</span>{productDetail?.price}{'.000'}</p>
               </Card.Text>
             </div>
             <div>

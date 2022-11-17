@@ -33,7 +33,7 @@ function HomeScreen() {
     <div>
       <div>
           <SlideShow/>
-        </div>
+      </div>
       <h1>Sản phẩm tại quán</h1>
       <div className="products">
         <Row>

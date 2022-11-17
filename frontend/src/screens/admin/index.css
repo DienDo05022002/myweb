@@ -25,3 +25,18 @@
 .p-container-new {
     margin-right: 10px;
 }
+.container-main {
+    justify-content: space-around
+}
+.container-form {
+    max-width: 520px;
+}
+.container-form-input {
+    width: 250%;
+}
+.img-form {
+    width: 200px;
+    height: 250px;
+    border: 0.05px solid rgba(51, 51, 51, 0.226);
+    margin-left: 15px;
+}

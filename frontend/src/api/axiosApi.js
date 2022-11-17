@@ -20,3 +20,24 @@ http.interceptors.request.use(async (req) => {
   return req;
 });
 export default http;
+
+
+
+
+
+const API_CLOUDINARY = 'https://res.cloudinary.com/dvz7vll4o/image/upload';
+export const uploadFile = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "jr0m4p9w");
+
+  console.log(formData)
+
+  try {
+    const res = await axios.post(API_CLOUDINARY, formData);
+    console.log(res.data.url)
+    return res.data.url;
+  } catch (error) {
+    console.log(error);
+  }
+};

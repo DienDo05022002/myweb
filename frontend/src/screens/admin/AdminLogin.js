@@ -32,6 +32,7 @@ const AdminLogin = () => {
           if (res.data.success)
             localStorage.setItem('tokens', res.data.accessToken);
             localStorage.setItem('user', user.email) // khi login xong, lưu email vào localStorage rồi vào giao diện chính lấy ra để làm username cho người dùng
+            localStorage.setItem('roleId', 'admin')
           console.log(res.data.accessToken);
           navigate('/dash-board');
         } catch (err) {
@@ -43,9 +44,9 @@ const AdminLogin = () => {
         <div className="container-login">
       <Container className="small-container login-small-container">
         <div>
-          <title>Đăng nhập tài khoản admin</title>
+          <title>Welcome to the regent</title>
         </div>
-        <h1 className="my-3">Đăng nhập</h1>
+        <h1 className="my-3">Welcome to the regent</h1>
         <form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Control

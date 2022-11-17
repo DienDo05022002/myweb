@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 import {
   BrowserRouter,
   Router,
@@ -29,6 +30,10 @@ import http from '../api/axiosApi';
 import Search from './Search';
 import SearchProductsItem from '../components/SearchProductsItem';
 import { useSearchParams } from '../hook/useSearchParams';
+import { debounce } from "lodash"
+import CategorySideBar from '../components/CategorySideBar';
+
+
 function NavBar() {
   const storeUser = localStorage.getItem('user');
   //set cart
@@ -38,7 +43,6 @@ function NavBar() {
     state: { cart },
   } = state;
   const { fullBox } = state;
-  // console.log({ state: { cart } });
 
   const navigate = useNavigate();
   const logOut = () => {
@@ -51,64 +55,57 @@ function NavBar() {
 
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [query, setQuery] = useState('');
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    navigate(query ? `/search/?query=${query}` : '/search');
-  };
 
   const searchParams = useSearchParams();
   const [results, setResults] = useState([]);
-
+// ------------------------------------------------------------------------------------------------------------------------
+// FEATURE SEARCH
+// ------------------------------------------------------------------------------------------------------------------------
   const [visible, setVisible] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [dropdownOptions, setDropdownOptions] = useState([]);
+  const [query, setQuery] = useState('');
 
   const openDropdown = () => setVisible(true);
   const fetchDropdownOptions = async (value) => {
     try {
       const res = await http.get(`/search/find?q=${value}`);
       setDropdownOptions(res.data);
-      // navigate(query ? `/search/?q=${query}` : '/search');
     } catch (err) {
       toast.error('Không có sản phẩm bạn tìm kiếm:(');
     }
   };
   const resultSearch = dropdownOptions.results
-  // adddebounce((nextValue) => fetchDropdownOptions(nextValue), 300)
-  const debounce = (nextValue) => (fetchDropdownOptions(nextValue), 300)
-  const debounceDropDown = useRef(debounce)
-  // const debounceDropDown = useRef(adddebounce((nextValue) => fetchDropdownOptions(nextValue), 300)).current.focus();
-  // const debounceDropDown = useCallback(debounce((nextValue) => fetchDropdownOptions(nextValue), 1000), [])
+  const debounceDropDown = useRef(debounce((nextValue) => fetchDropdownOptions(nextValue), 100)).current;
 
-
+  const submitHandlerSearch = async (value) => {
+    try {
+      const res = await http.get(`/search/find?q=${value}`);
+      setQuery(res.data);
+      navigate( `/search/find?q=${query}` );
+    } catch (err) {
+      toast.error('Không có sản phẩm bạn tìm kiếm:(');
+    }
+  }
   const handleInputOnchange = (e) => {
     const { value } = e.target;
-    console.log(value)
-    setKeyword(value);
-    fetchDropdownOptions(value)
-  };
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const res = await http(searchParams.get(`/search/find?q=${}`));
-  //       if (res.data.success) {
-  //         setResults(res.data.results);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, [searchParams.get("q")]);
+    e.preventDefault();
 
+    setKeyword(value);
+    debounceDropDown(value)
+    submitHandlerSearch(value)
+  };
+  // ------------------------------------------------------------------------------------------------------------------------
+  // END
+  // ------------------------------------------------------------------------------------------------------------------------
   const sideBarCategories = async () => {
+    setSidebarIsOpen(true)
     try {
-      const res = await http.get('/Category-sideBar');
-      setCategories(res.data);
+      const res = await http.get('/CategorySideBar');
+      setCategories(res.data.product);
       console.log(res.data.product)
     } catch (err) {
-      toast.error('');
+      setSidebarIsOpen(false)
     }
   };
   console.log(categories);
@@ -127,13 +124,14 @@ function NavBar() {
       ></div>
       <header className="header">
         <Container>
-          <LinkContainer to="/">
+          {/* <LinkContainer to="/"> */}
             <Container>
               <Nav className="header-nav">
                 <div className="header-nav">
                   <Button
                     variant="dark"
-                    onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+                    onClick={() => sideBarCategories()}
+                    // onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
                   >
                     <i className="fas fa-bars header-nav-icon"></i>
                   </Button>
@@ -142,34 +140,29 @@ function NavBar() {
                   </Link>
 
                   {/* ---------------------------------------------------------------------- */}
-                  <form>
+                  <form onSubmit={submitHandlerSearch}>
                     <InputGroup className="input-search">
-                      
                       <FormControl
                         name="q"
-                        // id="q"
+                        id="q"
                         placeholder="Tìm...."
                         value={keyword}
                         onChange={handleInputOnchange}
-                        // onSubmit={submitHandler}
                         onClick={openDropdown}
                       />
-                      <Button>
+                      <Button
+                        variant="light"
+                        onClick={() => navigate('/search/find')}
+                      >
                         <i className="fas fa-search"></i>
                       </Button>
-                      
                     </InputGroup>
                   </form>
-                    <div className='itHere' style={{color:'red'}}>
+                    <div className='dropdown-search' style={{color:'red'}}>
                         {resultSearch && resultSearch.map((result) => (
                           <SearchProductsItem data={result} key={result._id}/>
-                        )
-
-                          // <div key={result._id}>{result._id}</div>;
-                        
-                        
-                        )}
-                      </div>
+                        ))}
+                    </div>
 
                   {/* ---------------------------------------------------------------------- */}
                 </div>
@@ -213,7 +206,7 @@ function NavBar() {
               </Nav>
             </Container>
             {/* </div> */}
-          </LinkContainer>
+          {/* </LinkContainer> */}
         </Container>
       </header>
 
@@ -226,14 +219,19 @@ function NavBar() {
         }
       >
         <Nav className="flex-column text-white w-100 p-2">
-          <button onClick={() => sideBarCategories()}></button>
-          <Button onClick={() => setSidebarIsOpen(!sidebarIsOpen)}></Button>
+          <button onClick={() => sideBarCategories()}>Danh mục</button>
           <Nav.Item>
-            {categories.map((category) => (
-              <strong>{category}</strong>
+            {categories.map((category,index) => (
+              <div key={index}>
+                <Link to={`/Category-sideBar/category/${category}`} className='nav-link'>{category}</Link>
+              </div>
             ))}
+            {/* <CategorySideBar caterogy={'combo'}></CategorySideBar> */}
+            {/* <button onClick={() => navigate('/Category-sideBar/category/combo')}>x</button> */}
+            {/* <Link to={'/Category-sideBar/category/combo'}>xxx</Link> */}
           </Nav.Item>
         </Nav>
+        <button onClick={() => setSidebarIsOpen(!sidebarIsOpen)} className='close-nav'>Close</button>
       </div>
     </div>
   );

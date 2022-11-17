@@ -161,14 +161,13 @@ router.get('/admin/getByIdProducts/:id', verifyAdmin, async (req, res, next) => 
   }
 });
 
-router.post('/admin/postProducts', verifyAdmin, cloudinary.single('file'), async (req, res, next) => {
+router.post('/admin/postProducts', cloudinary.single('file'), async (req, res, next) => {
   const file = req.file;
-  // const data = req.body;
   const {
     name,
     slug,
     category,
-    image,
+    // image,
     price,
     discount,
     countIn,

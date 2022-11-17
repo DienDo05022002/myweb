@@ -79,7 +79,7 @@ main {
 }
 .side-navbar {
   width: 240px;
-  height: 100%;
+  height: 80%;
   position: absolute;
   left: -300px;
   background-color: #100901;
@@ -155,6 +155,7 @@ button.thumbnail {
 }
 .header {
   background-color: var(--bs-body-color);
+  position: relative;
 }
 .header-nav {
   display: flex;
@@ -206,10 +207,22 @@ button.thumbnail {
 .search-name-product {
   margin-left:10px;
   text-decoration: none;
-  color: orange;
+  color: #333;
+  font-weight: 500;
 }
 
 .search-link {
   padding: 10px;
-  display:flex
+  display:flex;
+  border: 0.05px solid #3333331f;
+}
+.icon-price {
+  font-size: 0.89rem;
+  font-weight: 700;
+  margin-right: 0.125rem;
+}
+.rating-number-vie {
+  font-weight: 700;
+  color: rgba(253, 65, 65, 0.788);
+  margin-left: 10px;
 }

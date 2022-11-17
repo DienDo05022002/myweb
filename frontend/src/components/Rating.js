@@ -58,7 +58,7 @@ function Rating(props) {
             }
           />
         </span>
-        <span>{numReviews}Quan tâm</span>
+        <span className='rating-number-vie'>{numReviews}Quan tâm</span>
       </div>
     </>
   );

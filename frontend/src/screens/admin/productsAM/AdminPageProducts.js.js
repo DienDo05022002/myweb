@@ -18,7 +18,7 @@ const AdminPageProducts = () => {
       try {
         const res = await http.get('/admin/getProducts');
         setProducts(res.data);
-        setRefresh((f) => f+1)
+        // setRefresh((f) => f+1)
         console.log(res.data);
       } catch (err) {
         if (err.res) {
@@ -29,7 +29,7 @@ const AdminPageProducts = () => {
       }
     };
     results();
-  }, [refresh]);
+  }, []);
   // console.log(products.products)
   const results = products.products;
   console.log(results);

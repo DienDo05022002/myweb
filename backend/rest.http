@@ -9,13 +9,17 @@ GET http://localhost:3010/v1
 GET http://localhost:3010/v1/products
 
 ###Product/:id
-GET http://localhost:3010/v1/product/6355102fd52d234f4cf84845
+GET http://localhost:3010/v1/product/635e5477ee5e5c5968c703f1
 
 
 ###########################
 ########## PRODUCT/CATEGORY
 ### Products/ Category side bar
 GET http://localhost:3010/v1/Category-sideBar
+
+###
+GET http://localhost:3010/v1/Category-sideBar/category/combo
+
 
 ### Products/ Get-by-category for combo
 GET http://localhost:3010/v1/Category-combo

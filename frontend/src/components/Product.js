@@ -38,7 +38,7 @@ function Product({ product }) {
               <Card.Title>{product.name}</Card.Title>
             </Link>
             <Rating rating={product.rating} numReviews={product.numReviews} />
-            <Card.Text className="title-product">{product.price}{'.000'}</Card.Text>
+            <Card.Text className="title-product"><span className='icon-price'>₫</span>{product.price}{'.000'}</Card.Text>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <Button
                 variant="primary"
@@ -48,7 +48,6 @@ function Product({ product }) {
               </Button>
             </div>
           </Card.Body>
-          <div className="product-info"></div>
         </Card>
       </div>
     </div>

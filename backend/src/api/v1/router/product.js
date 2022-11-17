@@ -6,6 +6,7 @@ const path = require('path');
 const upload = require('../middlewares/multerUpload');
 const cloudinary = require('../middlewares/cloudinary')
 const verifyToken = require('../middlewares/verifyToken');
+const verifyAdmin = require('../middlewares/verifyAdmin')
 // MULTER UPLOAD
 const multer = require('multer');
 
@@ -77,18 +78,65 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
     error.httpStatusCode = 400;
     return next(error);
   }
-  await product.save();
-  res.status(201).json({ file: req.file, product });
+  try {
+    const product = new Product(data);
+    await product.save();
+    res.status(201).json({ file: req.file, product });
+  } catch (err) {
+    res.status(400).json({ error: { name: err.name, messgae: err.message } });
+  }
 });
-
+router.post('/admin/addProduct',verifyAdmin, async (req, res, next) => {
+  const {
+    name,
+    slug,
+    category,
+    image,
+    price,
+    discount,
+    countIn,
+    rating,
+    numReviews,
+    description,
+  } = req.body;
+  const product = new Product({
+    name,
+    slug,
+    category,
+    image,
+    price,
+    discount,
+    countIn,
+    rating,
+    numReviews,
+    description,
+  });
+  if (!image) {
+    const error = new Error('Please upload a file');
+    error.httpStatusCode = 400;
+    return next(error);
+  }
+  await product.save();
+  res.status(201).json({ success: true , product });
+});
 //------------------------------------------------------------------------------------------------------------------------------
 //   Get By Category
 //------------------------------------------------------------------------------------------------------------------------------
 
-router.get('/Category-sideBar', async (req, res, next) => {
+router.get('/CategorySideBar', async (req, res, next) => {
   try {
       const product = await Product.find().distinct('category')
-      res.json(product)
+      res.json({product})
+  } catch (error) {
+      console.log(error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+});
+router.get('/Category-sideBar/category/:category', async (req, res, next) => {
+  // const {type} = req.params;
+  try {
+      const product = await Product.find( {category: req.params.category} )
+      res.json({product})
   } catch (error) {
       console.log(error)
       res.status(500).json({ success: false, message: 'Internal server error' })
@@ -97,7 +145,7 @@ router.get('/Category-sideBar', async (req, res, next) => {
 
 router.get('/Category-combo', async (req, res, next) => {
   try {
-      const product = await Product.find({ "category": "combo" })//.populate('user')
+      const product = await Product.find({ category: "combo" })//.populate('user')
       res.json({product })
   } catch (error) {
       console.log(error)

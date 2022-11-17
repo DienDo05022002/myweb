@@ -18,7 +18,7 @@ const AdminPageUsers = () => {
             const res = await http.get('/getAllUsers');
             if(res.data.success)
             setUsers(res.data);
-            setRefresh((f) => f+1)
+            // setRefresh((f) => f+1)
 
             console.log(res.data);
           } catch (err) {
