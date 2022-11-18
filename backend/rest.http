@@ -66,6 +66,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzVmY
     "user":"dien@gmail.com"
 }
 
+########################################################################
+########## Login
+########################################################################
 
 ### LOGIN/admin
 POST http://localhost:3010/v1/login
@@ -116,7 +119,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxM
 ### getById
 GET http://localhost:3010/v1/getUsers/63614bcbd1eb265c5487a491
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxM2JiNjc4M2MzYTE2ODBlYTc4ZjIiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM0ODYxOX0.mRwckQZNOhaEp8MAqYhVRZaerg6f6k57jsk7lEb0TIk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODc2MjU5Mn0.RjlTVh9yGp0Ae4lxnzQzRnVG7xsiqeD7GdSZkctfxbU
 
 ### updataUser
 PATCH  http://localhost:3010/v1/updataUsers/63613bb6783c3a1680ea78f2
@@ -153,4 +156,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxN
 ### Products/ Get-byId
 GET http://localhost:3010/v1/admin/getByIdProducts/6361cf23415046d812ce6d39
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2NzM1Mzg1MH0.qfRRsnxSVKQ1TzteWhrxK3wZhe6q8FiFyky3uIWzHeE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODc2MjU5Mn0.RjlTVh9yGp0Ae4lxnzQzRnVG7xsiqeD7GdSZkctfxbU
+
+
+### Products/ Get-byId
+DELETE  http://localhost:3010/v1/admin/deleteProduct/636a077bca6d2df9bfe095e8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODc3OTI2MX0.VqJKzS1BhgI-H8bIkdeEgMLXKhank1gksej7qnszYRM

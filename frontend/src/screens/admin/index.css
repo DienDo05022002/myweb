@@ -40,3 +40,6 @@
     border: 0.05px solid rgba(51, 51, 51, 0.226);
     margin-left: 15px;
 }
+.container--updata {
+    justify-content: space-around;
+}

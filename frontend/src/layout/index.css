@@ -60,3 +60,18 @@
   margin-top: 41px;
   z-index:99
 }
+.dashborad-admin {}
+.dashborad-admin-m {
+  display: flex;
+  justify-content: center;
+  border-top: 0.005px solid rgba(51, 51, 51, 0.158);
+  margin-top: 50px;
+  /* background-color: whitesmoke */
+}
+.dashborad-admin-l {
+  text-decoration: none;
+  color:#333;
+  cursor: pointer; 
+  background-color: rgba(228, 227, 227, 0.719);
+  padding: 5px 10px;
+}

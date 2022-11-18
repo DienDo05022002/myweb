@@ -61,25 +61,25 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
     numReviews,
     description,
   } = req.body;
-  const product = new Product({
-    name,
-    slug,
-    category,
-    image: file?.path,
-    price,
-    discount,
-    countIn,
-    rating,
-    numReviews,
-    description,
-  });
+  // const product = new Product({
+  //   name,
+  //   slug,
+  //   category,
+  //   image: file?.path,
+  //   price,
+  //   discount,
+  //   countIn,
+  //   rating,
+  //   numReviews,
+  //   description,
+  // });
   if (!file) {
     const error = new Error('Please upload a file');
     error.httpStatusCode = 400;
     return next(error);
   }
   try {
-    const product = new Product(data);
+    const product = new Product({name, slug, category, image: file?.path, price, discount, countIn, rating, numReviews, description});
     await product.save();
     res.status(201).json({ file: req.file, product });
   } catch (err) {

@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/esm/Card';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
 import Button from 'react-bootstrap/esm/Button';
 import http from '../../../api/axiosApi';
+import { toast } from "react-toastify";
 
 const AdminPageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -32,7 +33,23 @@ const AdminPageProducts = () => {
   }, []);
   // console.log(products.products)
   const results = products.products;
-  console.log(results);
+  // console.log(results);
+
+  const handleOnDelete = async (id) => {
+    try {
+      const res = await http.delete(`/admin/deleteProduct/${id}`);
+      if (res.data.success) 
+      console.log(res.data);
+
+      setProducts(products.products.filter(p => p._id !== id))
+      toast.success('Delete product Successfully')
+      // console.log(products)
+      // console.log("Xóa thành công:" + res);
+    } catch (err) {
+      toast.error('Faild');
+      console.log({err})
+    }
+}
   return (
     <div className="p-container">
       <div className="p-container-product">
@@ -59,9 +76,13 @@ const AdminPageProducts = () => {
                 <Col md={3} style={{ display: 'flex' }}></Col>
                 <Col md={2}>
                   <Button variant="light" className="p-container-bt">
-                    <i className="fas fa-pen"></i>
+                    <Link to={`/admin-page/updata/${i._id}`}>
+                      <i className="fas fa-pen"></i>
+                    </Link>
                   </Button>
-                  <Button variant="light" className="p-container-bt">
+                  <Button variant="light" className="p-container-bt"
+                  onClick={(e) => handleOnDelete(i._id, e)}
+                  >
                     <i className="fas fa-trash"></i>
                   </Button>
                 </Col>
@@ -69,6 +90,8 @@ const AdminPageProducts = () => {
             </ListGroup.Item>
           ))}
       </div>
+
+
       <div className="p-container-create-new">
         <strong className="p-container-new">News</strong>
         <Link to={'/admin-page/create'}>

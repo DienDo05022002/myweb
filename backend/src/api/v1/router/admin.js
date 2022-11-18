@@ -123,7 +123,7 @@ router.delete('/deleteUsers/:id', verifyAdmin, async (req, res, next) => {
 router.get('/admin/getProducts', verifyAdmin, async (req, res, next) => {
   const sort = "-createdAt";
   const page = +req.query.page || 1;
-  const limit = +req.query.limit || 5;
+  const limit = +req.query.limit || 50;
   const skip = (page - 1) * limit;
   const total = await Product.countDocuments();
   try {
@@ -196,7 +196,7 @@ router.post('/admin/postProducts', cloudinary.single('file'), async (req, res, n
   res.status(201).json({ file: req.file, product });
 });
 
-router.patch('/admin/updataProducts/:id',verifyAdmin, async (req, res, next) => {
+router.patch('/admin/updataProducts/:id', async (req, res, next) => {
   const {
     name,
     slug,
@@ -226,7 +226,7 @@ router.patch('/admin/updataProducts/:id',verifyAdmin, async (req, res, next) => 
 
 		const postUpdateCondition = { _id: req.params.id, user: req.userId }
 
-		updatedPost = await Post.findOneAndUpdate(
+		updatedPost = await Product.findOneAndUpdate(
 			postUpdateCondition,
 			updatedPost,
 			{ new: true }
@@ -238,11 +238,11 @@ router.patch('/admin/updataProducts/:id',verifyAdmin, async (req, res, next) => 
 				success: false,
 				message: 'Product not found or account not authorised'
 			})
-
+    // await updatedPost.save()
 		res.json({
 			success: true,
 			message: 'Excellent progress!',
-			post: updatedPost
+			updata: updatedPost
 		})
 	} catch (error) {
 		console.log(error)
@@ -250,10 +250,40 @@ router.patch('/admin/updataProducts/:id',verifyAdmin, async (req, res, next) => 
 	}
 });
 
-router.delete('admin/deleteProduct/:id', verifyAdmin, async (req, res, next) => {
+router.patch('/admin/text/:id', async (req, res, next) => {
   try {
-    const deleteUser = await User.findOneAndDelete({ _id: req.query.id });
-    if (!deleteUser) {
+    const conditionUpdate = { _id: req.params.id };
+    const checkUpdate = await Product.findOneAndUpdate(
+      conditionUpdate,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!checkUpdate) {
+      return res.status(401).json({
+        success: false,
+        message: "Update Product failed",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Update Product successfully !!!",
+      updata: checkUpdate
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server not found !!!",
+    });
+  }
+});
+router.delete('/admin/deleteProduct/:id',verifyAdmin, async (req, res, next) => {
+  try {
+    const deleteProduct = await Product.findOneAndDelete({ _id: req.params.id });
+    if (!deleteProduct) {
       return res.status(401).json({
         success: false,
         message: "Delete product failed",
@@ -263,6 +293,7 @@ router.delete('admin/deleteProduct/:id', verifyAdmin, async (req, res, next) => 
     return res.status(200).json({
       success: true,
       message: "Delete product successfully !!!",
+      deleteProduct: deleteProduct,
     });
 
   } catch (error) {
@@ -272,5 +303,32 @@ router.delete('admin/deleteProduct/:id', verifyAdmin, async (req, res, next) => 
       message: "Server not found !!!",
     });
   }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+  const postDeleteCondition = { _id: req.params.id }
+  const deletedPost = await Product.findOneAndDelete(postDeleteCondition)
+
+  // User not authorised or post not found
+  if (!deletedPost)
+    return res.status(401).json({
+      success: false,
+      message: 'Post not found or user not authorised'
+    })
+
+  res.json({ success: true, post: deletedPost })
+} catch (error) {
+  console.log(error)
+  res.status(500).json({ success: false, message: 'Internal server errorLLL' })
+}
+  //________________
+  // try {
+  //     const { id } = req.params;
+  //     const deletedPost = await deleteDocument(id);
+  //     res.json({ ok: true, deletedPost });
+  // } catch (error) {
+  //     res.status(500).json(error);
+  // }
 });
 module.exports = router;

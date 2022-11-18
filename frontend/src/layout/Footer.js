@@ -1,6 +1,24 @@
 import React from 'react';
+import './index.css'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
+  const [admin, setAdmin] = useState(false)
+  const authAdmin = localStorage.getItem('roleId');
+  useEffect(() => {
+    if (authAdmin === 'admin') setAdmin(true)
+  }, [authAdmin]);
+  if(admin) {
+    return (
+      <div className="dashborad-admin">
+        <div className="dashborad-admin-m">
+          <Link to={'/dash-board'} className="dashborad-admin-l">Welcome to dashboard for Admin</Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="menu-bar">
       <div class="text-center text-lg-start bg-white text-muted">
@@ -112,7 +130,6 @@ function Footer() {
           </a>
         </div>
       </div>
-      Footer
     </div>
   );
 }

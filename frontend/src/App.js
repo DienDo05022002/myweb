@@ -30,8 +30,6 @@ import Updata from './screens/admin/productsAM/Updata';
 import CategorySideBar from './components/CategorySideBar';
 
 function App() {
-  const authAdmin = localStorage.getItem('roleId');
-  console.log(authAdmin)
   // useEffect(() => {
   //   (async () => {
   //     if (authAdmin) {
@@ -73,7 +71,7 @@ function App() {
           <Route path="/admin-page/products" element={<AdminPageProducts />}></Route>
           <Route path="/admin-page/users" element={<AdminPageUsers />}></Route>
           <Route path="/admin-page/create" element={<Create />}></Route>
-          <Route path="/admin-page/updata" element={<Updata />}></Route>
+          <Route path="/admin-page/updata/:id" element={<Updata />}></Route>
           
         </Routes>
         <footer>
