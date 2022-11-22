@@ -63,7 +63,7 @@ function App() {
 
 
           <Route path="/Loading" element={<Loading />}></Route>
-          <Route path="/Realtime" element={<Realtime />}></Route>
+          {/* <Route path="/Realtime" element={<Realtime />}></Route> */}
 
 
 
@@ -77,6 +77,7 @@ function App() {
           <Route path="/admin-page/orderDetail/:id" element={<OrderDetail />}></Route>
           
         </Routes>
+        <Realtime />
         <footer>
           <Footer/>
         </footer>

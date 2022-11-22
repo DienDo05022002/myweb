@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
+import Button from 'react-bootstrap/Button';
 
 const socketServerUrl = 'http://localhost:3010';
 
@@ -22,6 +23,7 @@ const Realtime = () => {
   const [messages, setMessages] = useState('');
   const [messagesReceived, setMessagesReceived] = useState([]);
   const name = localStorage.getItem('user');
+  const [openMes, setOpenMes] = useState(false);
   // console.log(name)
 
   const sendMessage = () => {
@@ -43,9 +45,17 @@ const Realtime = () => {
     });
   }, []);
   console.log(messagesReceived);
-  // console.log(messages)
+  console.log(openMes)
   return (
-    <div className='contaner-message'>
+    <div className='contaner-message--chat'>
+    <div>
+    <Button  onClick={() => setOpenMes(!openMes)} className='contaner-message--button'>
+      <i class="fab fa-facebook-messenger" style={{fontSize: '30px'}} ></i>
+    </Button>
+    <div className={
+      openMes === true 
+        ? 'contaner-message' : 'contaner-message-close'
+    }>
       <div div className='chat-box'>
       <div className='chat-box-top'> 
         {messagesReceived.map((m, index) => {
@@ -85,11 +95,13 @@ const Realtime = () => {
             setMessages(event.target.value);
           }}
         />
-        <button onClick={sendMessage} className="contaner-message-button">
+        <Button variant="primary" onClick={sendMessage} className="contaner-message-button">
           <i class="fas fa-paper-plane" style={{color: 'white'}}></i>
-        </button>
+        </Button>
       </div>
       {/* </form> */}
+    </div>
+    </div>
     </div>
   );
 };

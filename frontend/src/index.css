@@ -229,12 +229,31 @@ button.thumbnail {
 
 /* Feature message */
 .contaner-message {
-  border: 0.05px solid rgba(51, 51, 51, 0.144);
-  background-color: rgba(245, 245, 245, 0.295);
+  border: 0.05px solid rgb(199, 197, 197);
+  background-color: whitesmoke;
   max-width: 400px;
-  max-height: 400px;
-  height: 400px;
+  width: 400px;
+  max-height: 450px;
+  height: 450px;
+  position: fixed;
+  box-shadow: 0 2px 10px 10px #ccc;
+  left: 850px;
+  bottom: 60px;
+  display: block;
+}
+.contaner-message-close {
+  display: none
+}
+.contaner-message--chat {
   position: relative;
+}
+.contaner-message--button {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  border: 0px;
+  box-shadow: 0 2px 5px 5px #ccc;
+  padding: 6px 12px;
 }
 .chat-box {
   display: flex;
@@ -248,10 +267,12 @@ button.thumbnail {
 .contaner-message-send {
   position: absolute;
   right: 0;
+  bottom: 0;
   width: 400px;
 }
 .contaner-message-input {
   width: 350px;
+  height: 40px;
   border: 0.5px solid rgba(51, 51, 51, 0.425);
   border-radius: 4px;
 }
