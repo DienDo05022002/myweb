@@ -55,7 +55,7 @@ function Footer() {
                   <i class="fas fa-gem me-3 text-secondary"></i>Coder house
                 </h6>
                 <p>
-                  <img class='img-footer' src='https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/280562833_147789331145312_687931909080083942_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=WrZ60JlS_0cAX-1qQab&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfAT0KSaWfRpmE8ISYno8DX8wbzEYCclaR7oLUBnqqePyg&oe=636105A2' alt='coder-house-img'/>
+                  <img class='img-footer' src='https://res.cloudinary.com/dvz7vll4o/image/upload/v1668919364/images-product/biiogww4cp9gfydz74rg.jpg' alt='coder-house-img'/>
                 </p>
               </div>
               <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">

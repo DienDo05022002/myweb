@@ -47,7 +47,7 @@ function Login() {
       <div className="login-img">
         <img
           className="w-[100px] aspect-auto mx-auto login-item-img"
-          src="https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/273014318_110262351564677_8425694595742022457_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6wywUtryiOwAX-XLs41&_nc_ht=scontent.fsgn2-7.fna&oh=00_AT-71XOwKtfl5nbB-KVcUdTi0LViLvyK8ze3hfT50uHseA&oe=635792E2"
+          src="https://res.cloudinary.com/dvz7vll4o/image/upload/v1668919364/images-product/biiogww4cp9gfydz74rg.jpg"
           alt="logo"
         />
       </div>

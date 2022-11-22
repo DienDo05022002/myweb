@@ -2,7 +2,7 @@
     margin: 10px 30px;
 }
 .p-container-product {
-
+    margin: 10px 15px
 }
 .p-container-name {
     text-decoration: none;
@@ -42,4 +42,122 @@
 }
 .container--updata {
     justify-content: space-around;
+}
+.dashboard-container {
+    min-height: 350px;
+}
+.dashboard-container--div {
+    justify-content: center;
+    border-bottom: 0.05px solid rgba(51, 51, 51, 0.61);
+}
+.dashboard-container--text {
+    margin: 20px;
+    width: 75px
+}
+.pay-success-fully {
+    border: 0.05px solid palegreen;
+    background-color: palegreen;
+}
+.pay-not-yet {
+
+}
+
+.linkDetail-order {
+    text-decoration: none;
+    background: beige;
+    color: black;
+    padding: 5px;
+    border-radius: 7px;
+}
+.list-group-box {
+    border-top: 0.05px solid #3333335d;
+    /* border-right: 0.05px solid #3333335d; */
+}
+.fa-user{
+    margin-top: 4px;
+    margin-right: 5px;
+}
+.fa-calendar-day {
+    margin-top: 4px;
+    margin-right: 5px;
+}
+.dashboard-title-welcome {
+    display: flex;
+    justify-content: center;
+    background-color: aliceblue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.table-confirm {
+    display: flex;
+    margin-left: -25px;
+}
+.table-confirm-tr {
+    margin: 0 13px;
+    border: 1px solid;
+    background: whitesmoke;
+}
+.orderD-container {
+    border: 0.05px solid #33333341;
+    padding: 10px 30px
+}
+.orderD-container-code {
+
+}
+.orderD-container-user {
+
+}
+.orderD-container-status {
+
+}
+.orderD-container-order {
+
+}
+.container-form-label{
+    background: aliceblue;
+    padding: 5px;
+    margin: 0 10px 0 10px;
+}
+.container-form-paidS {
+    background: limegreen;
+    padding: 5px 10px;
+    border: 1px solid;
+    color: white;
+    font-weight: 700;
+}
+.container-form-unpaid {
+    background:red;
+    padding: 5px 10px;
+    border: 1px solid;
+    color: white;
+    font-weight: 700;
+}
+.container-form-orders {
+    background: cornsilk;
+    width: max-content;
+    padding: 10px;
+    margin: 10px;
+}
+.container-form-label-order {
+    background: rgba(0, 0, 0, 0.747);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    padding: 0 5px;
+}
+.dashboard-container--order {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    height: 200px;
+}
+.dashboard-container--newOrder {
+
+}
+.dashboard-container--message {
+    background: yellow;
+    padding: 0 10px;
+}
+.dashboard-container--p{
+    padding:5px;
+    background-color: rgba(248, 15, 15, 0.11)
 }

@@ -163,3 +163,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxN
 DELETE  http://localhost:3010/v1/admin/deleteProduct/636a077bca6d2df9bfe095e8
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODc3OTI2MX0.VqJKzS1BhgI-H8bIkdeEgMLXKhank1gksej7qnszYRM
+
+
+########################################################################
+########## ADMIN/Orders
+### Orders/ Get-all
+GET http://localhost:3010/v1/admin/getAllOrders
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODk1NDgzMn0.Uu6UnwOgTKQSz9_DaSpGI_DBwlAv98oWD_ZxRKvSD_A
+
+
+### Orders/ Get-byId
+GET http://localhost:3010/v1/admin/getOrderById/637a25d2599ae51a235b9be9
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODk1NDgzMn0.Uu6UnwOgTKQSz9_DaSpGI_DBwlAv98oWD_ZxRKvSD_A
+
+
+### Orders/ Get-byId
+PATCH http://localhost:3010/v1/admin/textOrder/6360cddce36a5d62fbe358b9
+Content-Type: application/json
+
+{
+    "isPaid": false,
+    "isDelivered": true
+}

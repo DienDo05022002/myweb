@@ -43,7 +43,7 @@ function NavBar() {
     state: { cart },
   } = state;
   const { fullBox } = state;
-
+console.log({cart})
   const navigate = useNavigate();
   const logOut = () => {
     localStorage.removeItem('tokens');
@@ -169,11 +169,16 @@ function NavBar() {
                 <div className="header-nav-user">
                   <Link to="/cart" style={{ paddingTop: '6px' }}>
                     <i className="fas fa-shopping-cart fa-shopping-cart-color"></i>
-                    {cart.cartItem.length > 0 && (
+                    {/* {cart.cartItem.length > 0 && (
                       <Badge pill bg="danger">
                         {cart.cartItem.reduce((a, b) => a + b.quantiny, 0)}
                       </Badge>
-                    )}
+                    )} */}
+                    {cart.cartItem.length > 0 ? (
+                      <Badge pill bg="danger">
+                        {cart.cartItem.reduce((a, b) => a + b.quantiny, 0)}
+                      </Badge>
+                    ) : (<Badge>0</Badge>)}
                   </Link>
                   {storeUser !== null ? (
                     <Dropdown>

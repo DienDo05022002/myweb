@@ -42,7 +42,7 @@ function toCart(state, action) {
       return {...state, cart: {...state.cart , shippingAddress: action.payload}};
     //clear cart
     case 'CLEAR_CART':
-      return { ...state, cart: { ...state.cart, cartItems: [] } };
+      return { ...state, cart: { ...state.cart, cartItem: [] } };
     default:
       return state;
   }

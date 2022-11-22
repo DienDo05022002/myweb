@@ -29,6 +29,7 @@ function HomeScreen() {
     };
     results();
   }, []);
+  // console.log(products)
   return (
     <div>
       <div>

@@ -226,3 +226,60 @@ button.thumbnail {
   color: rgba(253, 65, 65, 0.788);
   margin-left: 10px;
 }
+
+/* Feature message */
+.contaner-message {
+  border: 0.05px solid rgba(51, 51, 51, 0.144);
+  background-color: rgba(245, 245, 245, 0.295);
+  max-width: 400px;
+  max-height: 400px;
+  height: 400px;
+  position: relative;
+}
+.chat-box {
+  display: flex;
+  flex-direction: column;
+}
+.chat-box-top {
+  height: 400px;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.contaner-message-send {
+  position: absolute;
+  right: 0;
+  width: 400px;
+}
+.contaner-message-input {
+  width: 350px;
+  border: 0.5px solid rgba(51, 51, 51, 0.425);
+  border-radius: 4px;
+}
+.contaner-message-button {
+  width: 50px;
+  border: 0.5px solid blue;
+  background: blue;
+  border-radius: 4px;
+}
+.container-message-icon {
+  color: whitesmoke;
+}
+.contaner-message-name {
+  width:190px;
+  padding-left: 20px;
+  margin-left: auto;
+  font-size: 0.75rem;
+  background-color: rgba(158, 158, 158, 0.336);
+  border-radius: 7px;
+}
+.contaner-message-text {
+  width:100%;
+  margin-left: auto;
+}
+.contaner-message-overview {
+  background-color: rgba(11, 11, 253, 0.74);
+  color:white;
+  border-radius: 7px;
+  margin-left: 10px;
+  padding-left: 10px;
+}

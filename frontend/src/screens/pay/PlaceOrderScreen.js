@@ -12,12 +12,26 @@ import Checkout from '../../components/Checkout';
 import http from '../../api/axiosApi';
 import LoadingBox from '../../components/LoadingBox';
 
+//Config Socket.io
+import { io } from 'socket.io-client';
+const socketServerUrl = 'http://localhost:3010';
+
+const config = {
+  secure: true,
+  reconnection: true,
+  reconnectionDelay: 5000,
+  reconnectionAttempts: 10,
+};
+
+const socket = io(socketServerUrl, config);
+
 const PlaceOrderScreen = () => {
   const storeUser = localStorage.getItem('user');
   const storeShippingAddress = localStorage.getItem('shippingAddress');
   const storePay = localStorage.getItem('selectorPaymentMethod');
 
   const { state, dispatch } = useContext(Store);
+  console.log(dispatch)
   const {
     cart: { cartItem, shippingAddress },
   } = state;
@@ -43,23 +57,6 @@ const PlaceOrderScreen = () => {
   }, [storePay, navigate]);
 
   const placeOrderHandler = async () => {
-    // try {
-    //   const res = await http.post('/orders',{
-    //     user: storeUser,
-    //     customerOders: cartItem,
-    //     customerInformation: shippingAddress,
-    //     methodPay: storePay,
-    //     totalOrders: totalRound2
-    //   })
-    //   console.log(res.orders._id)
-    //   if(res.data.success) {
-    //     localStorage.removeItem('cartItems')
-    //     navigate(`/orders/${res.orders._id}`)
-    //     console.log(res.orders._id)
-    //   }
-    // } catch(err) {
-    //   toast.error('Đơn hàng không hợp lệ')
-    // }
     try {
       const res = await http.post('/orders', {
         user: storeUser,
@@ -68,11 +65,13 @@ const PlaceOrderScreen = () => {
         methodPay: storePay,
         totalOrders: totalRound2,
       });
+      //Socket emit
       console.log(res.data)
+      socket.emit('client-message', { message:"You have new orders",newOrder:res.data });
       if(res.data.success)
       console.log(res.data.success)
-      // dispatch({type:'CLEAR_CART'})
       localStorage.removeItem('cartItems')
+      dispatch({type:'CLEAR_CART'})
       // navigate(`/orders/${res.order._id}`)
       navigate('/thankyou')
     } catch (error) {
@@ -93,11 +92,14 @@ const PlaceOrderScreen = () => {
               <Card.Body>
                 <Card.Title>Thông tin của bạn</Card.Title>
                 <Card.Text>
-                  <strong>Tên:</strong> {storeShippingAddress} <br />
+                  {/* <strong>Tên:</strong> {storeShippingAddress} <br /> */}
                   <strong>Tên:</strong> {shippingAddress.fullName} <br />
                   <strong>Địa chỉ: </strong> {shippingAddress.address}{' '}
                   <br />
                   <strong>Số điện thoại: </strong> {shippingAddress.phone}{' '}
+                  <br />
+                  <br />
+                  <strong>Ghi chú cho shipper: </strong> {shippingAddress.note}{' '}
                   <br />
                 </Card.Text>
                 <Link to="/ship-address">Sửa</Link>
@@ -129,7 +131,7 @@ const PlaceOrderScreen = () => {
                           <Link to={`/product/${item.slug}`}>{item.name}</Link>
                         </Col>
                         <Col md={3}>
-                          <span>{item.quantity}</span>
+                          <span>Quantity:{item.quantity}</span>
                         </Col>
                         <Col md={3}>${item.price}</Col>
                       </Row>

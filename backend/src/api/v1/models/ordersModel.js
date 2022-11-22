@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ordersSchema = new mongoose.Schema(
   {
-    // user: { type: String, required: true},
+    user: { type: String, required: true},
 
     customerOders: [
       {
@@ -29,6 +29,7 @@ const ordersSchema = new mongoose.Schema(
       fullName: { type: String },
       address: { type: String },
       phone: { type: String },
+      note: { type: String },
     },
     totalOrders: { type: Number, required: true},
     methodPay: { type: String },

@@ -20,10 +20,11 @@ const ShipScreen = () => {
   const {
     cart: { shippingAddress },
   } = state;
-
+console.log({shippingAddress})
   const [fullName, setFullName] = useState(shippingAddress.fullName || '');
   const [phone, setPhone] = useState(shippingAddress.phone || '');
   const [address, setAddress] = useState(shippingAddress.address || '');
+  const [note, setNote] = useState('')
 
   useEffect(() => {
     if (!storeUser && !storeTokens) {
@@ -35,11 +36,11 @@ const ShipScreen = () => {
     // if(!storeFullName && !storePhone && !storeAddress)
     dispatch({
       type: 'SHIPPING_ADDRESS',
-      payload: { fullName, phone, address },
+      payload: { fullName, phone, address, note },
     });
     localStorage.setItem(
       'shippingAddress',
-      JSON.stringify({ fullName, phone, address })
+      JSON.stringify({ fullName, phone, address, note })
     );
     navigate('/payment');
     //------------------------------------------------------------
@@ -101,6 +102,8 @@ const ShipScreen = () => {
               as="textarea"
               placeholder="Leave a comment here"
               style={{ height: '100px' }}
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
             />
           </FloatingLabel>
           <div className="mb-3">

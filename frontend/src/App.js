@@ -28,27 +28,24 @@ import Create from './screens/admin/productsAM/Create';
 import AdminPageUsers from './screens/admin/usersAM/AdminPageUsers';
 import Updata from './screens/admin/productsAM/Updata';
 import CategorySideBar from './components/CategorySideBar';
+import Loading from './layout/Loading';
+import Realtime from './components/Realtime';
+import OverViewOrders from './screens/admin/orderAM/OverViewOrders';
+import OrderDetail from './screens/admin/orderAM/OrderDetail';
 
 function App() {
-  // useEffect(() => {
-  //   (async () => {
-  //     if (authAdmin) {
-  //       navigate('/dash-board');
-  //     } else {
-  //       await navigate('/');
-  //     }
-
-
-  //   })();
-  // }, [authAdmin]);
+  const authAdmin = localStorage.getItem('roleId');
+  console.log(authAdmin)
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
         <ToastContainer position="bottom-center" limit={1} />
         <NavBar />
+        {authAdmin === 'admin' ? <Footer/> : null}
 
         
         <Routes>
+        {/* <Route></Route>   */}
           <Route path="/" element={<HomeScreen />}></Route>
           <Route path="/product/:slug" element={<ProductScreen />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -65,6 +62,10 @@ function App() {
           <Route path="/Category-sideBar/category/:category" element={<CategorySideBar />}></Route>
 
 
+          <Route path="/Loading" element={<Loading />}></Route>
+          <Route path="/Realtime" element={<Realtime />}></Route>
+
+
 
           <Route path="/admin-login" element={<AdminLogin />}></Route>
           <Route path="/dash-board" element={<DashBoard />}></Route>
@@ -72,6 +73,8 @@ function App() {
           <Route path="/admin-page/users" element={<AdminPageUsers />}></Route>
           <Route path="/admin-page/create" element={<Create />}></Route>
           <Route path="/admin-page/updata/:id" element={<Updata />}></Route>
+          <Route path="/admin-page/overviewOrder" element={<OverViewOrders />}></Route>
+          <Route path="/admin-page/orderDetail/:id" element={<OrderDetail />}></Route>
           
         </Routes>
         <footer>

@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
+
+// const server = require('http').createServer(app);
+// const io = require('socket.io')(server);
+
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
@@ -19,7 +23,7 @@ mongoose
   .catch((err) => {
     console.log(err.message);
   });
-
+app.use(bodyParser.json())
 app.use(morgan('combined'));
 app.use(helmet());
 app.use(express.json());
@@ -39,13 +43,14 @@ app.use(require('./api', severRoute));
 
 // const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, '/frontend/build')));
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
-);
+// app.get('*', (req, res) =>
+//   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+// );
 
 app.get('/', (req, res) => {
   res.send(data.products);
 });
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

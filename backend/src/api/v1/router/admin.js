@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const Product = require('../models/productModel');
+const Orders = require('../models/ordersModel');
 
 var express = require('express');
 var router = express.Router();
@@ -250,36 +251,6 @@ router.patch('/admin/updataProducts/:id', async (req, res, next) => {
 	}
 });
 
-router.patch('/admin/text/:id', async (req, res, next) => {
-  try {
-    const conditionUpdate = { _id: req.params.id };
-    const checkUpdate = await Product.findOneAndUpdate(
-      conditionUpdate,
-      req.body,
-      {
-        new: true,
-      }
-    );
-    if (!checkUpdate) {
-      return res.status(401).json({
-        success: false,
-        message: "Update Product failed",
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      message: "Update Product successfully !!!",
-      updata: checkUpdate
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: "Server not found !!!",
-    });
-  }
-});
 router.delete('/admin/deleteProduct/:id',verifyAdmin, async (req, res, next) => {
   try {
     const deleteProduct = await Product.findOneAndDelete({ _id: req.params.id });
@@ -330,5 +301,100 @@ router.delete('/:id', async (req, res) => {
   // } catch (error) {
   //     res.status(500).json(error);
   // }
+});
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
+//   Orders
+//------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
+
+router.get('/admin/getAllOrders', verifyAdmin, async (req, res, next) => {
+  // const sort = "-createdAt";
+  const sort = {createdAt: -1}
+  const page = +req.query.page || 1;
+  const limit = +req.query.limit || 50;
+  const skip = (page - 1) * limit;
+  const total = await Orders.countDocuments();
+  try {
+    const order = await Orders.find().sort(sort).skip(skip).limit(limit);
+    res.json({ 
+      success: true,
+      totalPage: Math.ceil(total / limit),
+      totalOrder: total,
+      order,
+    });
+  } catch (err) {
+    res.status(400).json({ error: { name: err.name, messgae: err.message } });
+  }
+});
+
+router.get('/admin/getOrderById/:id',verifyAdmin, async (req, res, next) => {
+  const _id = req.params.id;
+  try {
+    const order = await Orders.findOne({ _id: _id });
+
+    return res.json({
+      success: true,
+      order,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server not found!",
+    });
+  }
+});
+
+// router.patch('/admin/updataOrder/:id', async (req, res, next) => {
+// 	try {
+// 		const postUpdateCondition = { _id: req.params.id }
+//     const data = req.body;
+
+// 		const updatedPost = await Orders.findOneAndUpdate(
+//       postUpdateCondition,
+// 			data,
+// 			// { new: true }
+// 		)
+//     // await updatedPost.save()
+// 		res.json({
+// 			success: true,
+// 			message: 'Excellent progress!',
+//       user:postUpdateCondition,
+// 			updata: updatedPost
+// 		})
+// 	} catch (error) {
+// 		console.log(error)
+// 		res.status(500).json({ success: false, message: 'Internal server errorLL' })
+// 	}
+// });
+
+router.patch('/admin/updataOrder/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const {isPaid , isDelivered} = req.body;
+    console.log(req.body)
+    const checkUpdate = await Orders.findByIdAndUpdate(
+      id,
+      {
+        isPaid: isPaid ,
+        isDelivered: isDelivered 
+      },
+      { new: true }
+    );
+    return res.status(200).json({
+      id: id, 
+      up: {isPaid , isDelivered},
+      updata: checkUpdate
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server not found !!!",
+    });
+  }
 });
 module.exports = router;
