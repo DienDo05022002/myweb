@@ -276,6 +276,33 @@ router.delete('/admin/deleteProduct/:id',verifyAdmin, async (req, res, next) => 
   }
 });
 
+//------------------- Set status product------------------------------------------------------------------------------------------------------------------
+router.patch('/admin/setStatusProduct/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const {active , rollTop} = req.body;
+    console.log(req.body)
+    const checkUpdate = await Product.findByIdAndUpdate(
+      id,
+      {
+        active: active ,
+        rollTop: rollTop 
+      },
+      { new: true }
+    );
+    return res.status(200).json({
+      id: id, 
+      setStatus: {active , rollTop},
+      updataStatus: checkUpdate
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server not found !!!",
+    });
+  }
+});
 router.delete('/:id', async (req, res) => {
   try {
   const postDeleteCondition = { _id: req.params.id }
@@ -395,6 +422,37 @@ router.patch('/admin/updataOrder/:id', async (req, res, next) => {
       success: false,
       message: "Server not found !!!",
     });
+  }
+});
+
+// Get Order Today
+router.get('/admin/getAllOrdersToday', async (req, res, next) => {
+  // const sort = "-createdAt";
+  const sort = {createdAt: -1}
+  // const page = +req.query.page || 1;
+  // const limit = +req.query.limit || 50;
+  // const skip = (page - 1) * limit;
+  // const total = await Orders.countDocuments();
+  const today = new Date();
+  const eqDay = { $eq: [{ $dayOfMonth: '$createdAt' }, { $dayOfMonth: today }] };
+  const eqMonth = { $eq: [{ $month: '$createdAt' }, { $month: today }] };
+
+  const query = {
+    $expr: {
+      $and: [eqDay, eqMonth],
+    },
+  };
+  try {
+    const order = await Orders.find({createdAt: query})//.sort(sort)//.skip(skip).limit(limit);
+    res.json({ 
+      query: {query},
+      success: true,
+      // totalPage: Math.ceil(total / limit),
+      // totalOrder: total,
+      order,
+    });
+  } catch (err) {
+    res.status(400).json({ error: { name: err.name, messgae: err.message } });
   }
 });
 module.exports = router;

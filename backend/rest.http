@@ -27,6 +27,11 @@ GET http://localhost:3010/v1/Category-combo
 ### Products/ Get-by-category for single
 GET http://localhost:3010/v1/Category-single
 
+
+### Orders/ Get-by-status
+GET http://localhost:3010/v1/homePage/rollTop
+Content-Type: application/json
+
 ########################################################################
 ########## END
 ########################################################################
@@ -187,3 +192,9 @@ Content-Type: application/json
     "isPaid": false,
     "isDelivered": true
 }
+
+### Orders/ Get-byId
+GET http://localhost:3010/v1/admin/getAllOrdersToday
+Content-Type: application/json
+
+

@@ -100,7 +100,7 @@ const OverViewOrders = () => {
                 </Col>
                 <Col md={3} style={{ display: 'flex' }}>
                   <i class="fas fa-calendar-day "></i>
-                  <p>{i.createdAt.toLocaleString()}</p>
+                  <p>{i.createdAt.substring(0, 10)}</p>
                 </Col>
                 <Col md={2} style={{ display: 'flex' }}>
                     <div>

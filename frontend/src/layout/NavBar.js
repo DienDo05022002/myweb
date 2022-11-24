@@ -50,6 +50,7 @@ console.log({cart})
     localStorage.removeItem('user');
     localStorage.removeItem('shippingAddress');
     localStorage.removeItem('selectorPaymentMethod');
+    localStorage.removeItem('roleId');
     navigate('/');
   };
 
@@ -72,11 +73,12 @@ console.log({cart})
       const res = await http.get(`/search/find?q=${value}`);
       setDropdownOptions(res.data);
     } catch (err) {
-      toast.error('Không có sản phẩm bạn tìm kiếm:(');
+      setDropdownOptions([]);
+      // toast.error('Không có sản phẩm bạn tìm kiếm:(');
     }
   };
   const resultSearch = dropdownOptions.results
-  const debounceDropDown = useRef(debounce((nextValue) => fetchDropdownOptions(nextValue), 100)).current;
+  const debounceDropDown = useRef(debounce((nextValue) => fetchDropdownOptions(nextValue), 200)).current;
 
   const submitHandlerSearch = async (value) => {
     try {
@@ -108,7 +110,7 @@ console.log({cart})
       setSidebarIsOpen(false)
     }
   };
-  console.log(categories);
+  // console.log(categories);
   return (
     <div>
       <div
@@ -191,10 +193,10 @@ console.log({cart})
 
                       <Dropdown.Menu variant="dark">
                         <Dropdown.Item href="#/action-3">
-                          <Link to="/history-order">Lịch sử mua hàng</Link>
+                          <Link to="/history-order" className='navigate-user'>Lịch sử mua hàng</Link>
                         </Dropdown.Item>
                         <Dropdown.Item href="#/action-3">
-                          <Link to="/profile">Tài khoản</Link>
+                          <Link to="/profile" className='navigate-user'>Tài khoản</Link>
                         </Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item href="#/action-4" onClick={logOut}>

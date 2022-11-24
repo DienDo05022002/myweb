@@ -86,6 +86,50 @@ const AdminPageProducts = () => {
                     <i className="fas fa-trash"></i>
                   </Button>
                 </Col>
+                <Col md={3} style={{ display: 'flex' }}>
+                    <div className='div-boxshadow'>Active
+                        {i.active === 'un' 
+                        ? 
+                          <Button variant="light" className="p-container-bt" onClick={ async () => {
+                            http.patch(`/admin/setStatusProduct/${i._id}`, {
+                              active: 'on'
+                            }) 
+                            const res = await http.get('/admin/getProducts');
+                            setProducts(res.data);
+                          }}> <i class="fas fa-times" style={{color: 'red'}}></i></Button> 
+                        : 
+                          <Button variant="light" className="p-container-bt" onClick={ async () => {
+                            http.patch(`/admin/setStatusProduct/${i._id}`, {
+                              active: 'un'
+                            }) 
+                            const res = await http.get('/admin/getProducts');
+                            setProducts(res.data);
+                          }}>
+                            <i class="fas fa-check" style={{color: 'limegreen'}}></i> </Button>
+                        }
+                    </div>
+                    <div className='div-boxshadow'>Roll Top
+                        {i.rollTop === 'un' 
+                        ? 
+                          <Button variant="light" className="p-container-bt" onClick={ async () => {
+                            http.patch(`/admin/setStatusProduct/${i._id}`, {
+                              rollTop: 'on'
+                            }) 
+                            const res = await http.get('/admin/getProducts');
+                            setProducts(res.data);
+                          }}> <i class="fas fa-times" style={{color: 'red'}}></i></Button> 
+                        : 
+                          <Button variant="light" className="p-container-bt" onClick={ async () => {
+                            http.patch(`/admin/setStatusProduct/${i._id}`, {
+                              rollTop: 'un'
+                            }) 
+                            const res = await http.get('/admin/getProducts');
+                            setProducts(res.data);
+                          }}>
+                            <i class="fas fa-check" style={{color: 'limegreen'}}></i> </Button>
+                        }
+                    </div>
+                </Col>
               </Row>
             </ListGroup.Item>
           ))}

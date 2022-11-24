@@ -45,13 +45,20 @@ const HistoryOrders = () => {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr key={order?._id}>
+            <tr key={order?._id} 
+            className={
+              order.isPaid && order.isDelivered === true ? 'order-success' : 'order-notyet'
+            }
+            >
               <td>{order?._id}</td>
               <td>{order.createdAt.substring(0, 10)}</td>
-              <td>{order.totalOrders}</td>
-              <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
-              <td>
-                {order.isDelivered ? order.deliveredAt.substring(0, 10) : 'No'}
+              <td>{order.totalOrders}.000₫</td>
+              <td>{order.isPaid === true 
+                ? <p style={{marginBottom: '0'}}>Đã thanh toán</p> 
+                : <p style={{marginBottom: '0'}}>Chưa thanh toán</p>}</td>
+              <td>{order.isDelivered === true 
+                ? <p style={{marginBottom: '0'}}>Đã thanh toán</p> 
+                : <p style={{marginBottom: '0'}}>Chưa thanh toán</p>}
               </td>
               <td>
                 <Button

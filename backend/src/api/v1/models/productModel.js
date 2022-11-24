@@ -24,6 +24,8 @@ const productSchema = new mongoose.Schema(
     rating: { type: Number, required: true },
     numReviews: { type: Number, required: true },
     description: { type: String, required: true },
+    active: { type: String, default: 'on' },
+    rollTop: { type: String, default: 'un' },
     // reviews: [reviewSchema],
   },
   {

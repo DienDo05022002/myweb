@@ -18,6 +18,36 @@ router.get('/products', async (req, res, next) => {
     res.status(400).json({ error: { name: err.name, messgae: err.message } });
   }
 });
+
+//Pagination 
+const PAGE_LIMIT = 10
+router.get('/pagination/products', async (req, res, next) => {
+  const sort = {createdAt: -1}
+  const page = req.query.page || 1;
+  const total = await Product.countDocuments();
+  // const skip = (page - 1) * PAGE_LIMIT;
+  if(page) {
+    const skip = (page - 1) * PAGE_LIMIT;
+    try {
+      const products = await Product.find({}).sort(sort).skip(skip).limit(PAGE_LIMIT)
+      res.json({
+        success: true,
+        numberPage: page,
+        totalPage: Math.ceil(total / PAGE_LIMIT),
+        products: products
+      });
+    } catch (err) {
+      res.status(400).json({ error: { name: err.name, messgae: err.message } });
+    }
+  } else {
+    try {
+      const products = await Product.find();
+      res.json(products);
+    } catch (err) {
+      res.status(400).json({ error: { name: err.name, messgae: err.message } });
+    } 
+  }
+});
 router.get('/product/slug/:slug', async (req, res, next) => {
   try {
     const product = await Product.findOne({ slug: req.params.slug });
@@ -60,6 +90,7 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
     rating,
     numReviews,
     description,
+    
   } = req.body;
   // const product = new Product({
   //   name,
@@ -79,14 +110,16 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
     return next(error);
   }
   try {
-    const product = new Product({name, slug, category, image: file?.path, price, discount, countIn, rating, numReviews, description});
+    const product = new Product(
+      {name, slug, category, image: file?.path, price, discount, countIn, rating, numReviews, description }
+    );
     await product.save();
     res.status(201).json({ file: req.file, product });
   } catch (err) {
     res.status(400).json({ error: { name: err.name, messgae: err.message } });
   }
 });
-router.post('/admin/addProduct',verifyAdmin, async (req, res, next) => {
+router.post('/admin/addProduct', async (req, res, next) => {
   const {
     name,
     slug,
@@ -98,6 +131,8 @@ router.post('/admin/addProduct',verifyAdmin, async (req, res, next) => {
     rating,
     numReviews,
     description,
+    active,
+    rollTop
   } = req.body;
   const product = new Product({
     name,
@@ -110,6 +145,8 @@ router.post('/admin/addProduct',verifyAdmin, async (req, res, next) => {
     rating,
     numReviews,
     description,
+    active,
+    rollTop
   });
   if (!image) {
     const error = new Error('Please upload a file');
@@ -196,5 +233,19 @@ router.get('/search/text', (req, res, next) => {
 //------------------------------------------------------------------------------------------------------------------------------
 //   Search
 //------------------------------------------------------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+//   Get By Status
+//------------------------------------------------------------------------------------------------------------------------------
+router.get('/homePage/rollTop', async (req, res, next) => {
+  try {
+      const product = await Product.find({ rollTop: "on" })//.populate('user')
+      res.json({product })
+  } catch (error) {
+      console.log(error)
+      res.status(500).json({ success: false, message: 'Internal server error' })
+  }
+});
 
 module.exports = router;

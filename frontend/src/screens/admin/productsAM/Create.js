@@ -21,8 +21,15 @@ const Create = () => {
     rating: '',
     numReviews: '',
     description: '',
+    // active: true,
+    // rollTop: false
   });
   const [image, setImage] = useState([]);
+  const [active, setActive] = useState('on')
+  const [rollTop, setRollTop] = useState('un')
+  // const T = true
+  // const F = false
+  console.log(typeof active)
   console.log(formP);
   const handleChange = (e) => {
     setFormP((prev) => {
@@ -58,6 +65,7 @@ const Create = () => {
     const newProduct = {
       image: image,
       ...formP,
+      active: active
     };
     try {
       const res = await http.post('/admin/addProduct', newProduct);
@@ -110,7 +118,7 @@ const Create = () => {
                 className='container-form-input'
               ></Form.Control>
             </Form.Group>
-            ------------------------------
+            --
             <Form.Group>
               <Form.Control
                 id="price"
@@ -177,7 +185,32 @@ const Create = () => {
               ></Form.Control>
             </Form.Group>
             --
+            <div style={{ display: 'flex', marginBottom: '40px'}}>
+              <div style={{ display: 'flex'}}>
+              <p style={{ paddingRight: '20px', paddingLeft: '20px', marginBottom: '0', marginTop: '3px' }}>Post Now</p>
+              <select value={active}
+              onChange={(e) => {
+                setActive(e.target.value)
+              }}
+              className={active === 'un' ? 'container-form-select-red' : 'container-form-select-green'}
+              >
+                <option value='on'>true</option>
+                <option value='un'>false</option>
+              </select>
+              </div>
+              <p style={{ paddingRight: '20px', paddingLeft: '20px', marginBottom: '0', marginTop: '3px' }}>Insert roll top</p>
+              <select value={rollTop}
+              onChange={(e) => {
+                setRollTop(e.target.value)
+              }}
+              className={rollTop === 'un' ? 'container-form-select-red' : 'container-form-select-green'}
+              >
+                <option value='on'>true</option>
+                <option value='un'>false</option>
+              </select>
+            </div>
             <Form.Group>
+            --
               <Button variant="success" type="submit">
                 Tạo
               </Button>

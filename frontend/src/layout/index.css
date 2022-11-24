@@ -103,3 +103,8 @@
     transform: rotate(360deg);
   }
 }
+
+.navigate-user {
+  text-decoration: none;
+  color: white
+}

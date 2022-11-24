@@ -42,7 +42,7 @@ const OrderDetail = () => {
           </p>
           <p>
             <label className="container-form-label">Create order</label>
-            {orderD && orderD?.createdAt}
+            {orderD && orderD?.createdAt.substring(0, 10)}
           </p>
           <p>
             <label className="container-form-label">Id User:</label>
