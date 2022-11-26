@@ -12,7 +12,7 @@ const multer = require('multer');
 
 router.get('/products', async (req, res, next) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find({active: 'on'});
     res.json(products);
   } catch (err) {
     res.status(400).json({ error: { name: err.name, messgae: err.message } });
@@ -20,7 +20,7 @@ router.get('/products', async (req, res, next) => {
 });
 
 //Pagination 
-const PAGE_LIMIT = 10
+const PAGE_LIMIT = 8
 router.get('/pagination/products', async (req, res, next) => {
   const sort = {createdAt: -1}
   const page = req.query.page || 1;
@@ -29,11 +29,11 @@ router.get('/pagination/products', async (req, res, next) => {
   if(page) {
     const skip = (page - 1) * PAGE_LIMIT;
     try {
-      const products = await Product.find({}).sort(sort).skip(skip).limit(PAGE_LIMIT)
+      const products = await Product.find({active: 'on'}).sort(sort).skip(skip).limit(PAGE_LIMIT)
       res.json({
         success: true,
-        numberPage: page,
-        totalPage: Math.ceil(total / PAGE_LIMIT),
+        numberPageNow: page,
+        endPage: Math.ceil(total / PAGE_LIMIT),
         products: products
       });
     } catch (err) {
@@ -48,12 +48,44 @@ router.get('/pagination/products', async (req, res, next) => {
     } 
   }
 });
+
+
 router.get('/product/slug/:slug', async (req, res, next) => {
   try {
     const product = await Product.findOne({ slug: req.params.slug });
     res.json(product);
   } catch (err) {
     res.status(400).json({ error: { name: err.name, messgae: err.message } });
+  }
+});
+// Comment and review 
+router.patch('/product/review/:slug', async (req, res, next) => {
+  const { slug } = req.params.slug;
+  try {
+    const review = {
+      name: req.body.name,
+      comment: req.body.comment,
+      // userId: req.userId
+    };
+    console.log("param:"+req.params)
+    console.log("body:"+req.body)
+
+    const addReview = await Product.findOneAndUpdate(
+      slug,
+      {$push: {reviews: review}},
+      { new: true }
+    );
+    return res.status(200).json({
+      success: true,
+      slug: slug,
+      addReview
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server not found !!!",
+    });
   }
 });
 router.get('/product/:id', async (req, res, next) => {

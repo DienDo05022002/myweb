@@ -4,3 +4,33 @@
 .rating {
     color:yellow
 }
+.overviewCategory-category-interest {
+    margin: 100px 0px
+}
+.comment-container {
+    margin: 50px 100px;
+    padding: 50px 100px;
+    border-top: 1px solid;
+    background-color: #e4e6eb;
+}
+.comment-showOne {
+    display: flex;
+}
+.comment-user {
+    background-color: white;
+    border: 0.05px solid white;
+    border-radius: 13px;
+    margin: 10px;
+    padding: 4px 10px;
+}
+.comment-text {
+
+}
+.floating-input {
+    margin-bottom: 50px;
+    position: relative;
+}
+.floating-button {
+    position: absolute;   
+    left: 825px;
+}

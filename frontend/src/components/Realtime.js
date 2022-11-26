@@ -27,11 +27,11 @@ const Realtime = () => {
   // console.log(name)
 
   const sendMessage = () => {
-    socket.emit('client-message', { name, messages });
+    socket.emit('client-chat', { name, messages });
     setMessages('')
   };
   useEffect(() => {
-    socket.on('sever-message', (data) => {
+    socket.on('sever-chat', (data) => {
       // setMessagesReceived(data.messages)
       console.log(data);
       console.log(messages);
@@ -63,19 +63,19 @@ const Realtime = () => {
             <div key={'message-' + index} style={{ marginBottom: 8, flex: 1, display: 'flex' }}>
               {name === m.name && (
                 <div style={{ flex: 1 }}>
-                  <div className='contaner-message-name'>
+                  {/* <div className='contaner-message-name'>
                     <p style={{ marginBottom:'0' }} className='contaner-message-text'>{m.name}</p>
-                  </div>
+                  </div> */}
                   <div className='contaner-message-overview'>{m.messages}</div>
                 </div>
               )}
 
               {name !== m.name && (
-                <div style={{ flex: 1, display: 'flex' }}>
-                  <div style={{ backgroundColor: 'gray', display: 'flex', flex: 0 }}>
-                    {m.name}: {m.messages}
+                <div style={{ flex: 1 }}>
+                  <div className='contaner-message-enemy'>
+                    <p style={{ marginBottom:'0' }} className='contaner-message-text-enemy'>{m.name}</p>
                   </div>
-                  <div style={{ flex: 1 }}></div>
+                  <div className='contaner-message-overview-enemy'>{m.messages}</div>
                 </div>
               )}
             </div>

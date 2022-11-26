@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
-// const Schema = mongoose.Schema
+const Schema = mongoose.Schema
 
 const reviewSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     comment: { type: String, required: true },
-    rating: { type: Number, required: true },
+    // userId: { 
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'users'
+    // },
   },
   {
     timestamps: true,
@@ -26,7 +29,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, required: true },
     active: { type: String, default: 'on' },
     rollTop: { type: String, default: 'un' },
-    // reviews: [reviewSchema],
+    reviews: [reviewSchema],
   },
   {
     timestamps: true,

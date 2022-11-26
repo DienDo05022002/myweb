@@ -13,7 +13,7 @@ function Product({ product }) {
   const {
     cart: { cartItem },
   } = state;
-
+console.log({product})
   const addOrderHandler = async (i) => {
     const existItem = cartItem.find((x) => x._id === i._id);
     console.log(existItem);

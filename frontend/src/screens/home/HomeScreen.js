@@ -8,32 +8,35 @@ import SlideShow from '../../layout/SlideShow';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import Top from '../../components/Top';
+import Button from 'react-bootstrap/Button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper'
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
 function HomeScreen() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [top, setTop] = useState([]);
   const [pagination, setPagination ] = useState(1);
   const [page, setPage ] = useState([]);
-  useEffect(() => {
-    const results = async () => {
-      try {
-        const res = await http.get('/products');
-        setProducts(res.data);
-        // console.log(res.data)
-      } catch (err) {
-        if (err.res) {
-          console.log(err.res.data.message);
-        } else {
-          console.log('Error: Network Error');
-        }
-      }
-    };
-    results();
-  }, []);
+  const [endPage, setEndPage] = useState()
+  // console.log(pagination)
+  // useEffect(() => {
+  //   const results = async () => {
+  //     try {
+  //       const res = await http.get('/products');
+  //       setProducts(res.data);
+  //       // console.log(res.data)
+  //     } catch (err) {
+  //       if (err.res) {
+  //         console.log(err.res.data.message);
+  //       } else {
+  //         console.log('Error: Network Error');
+  //       }
+  //     }
+  //   };
+  //   results();
+  // }, []);
   useEffect(() => {
     const results = async () => {
       try {
@@ -50,19 +53,31 @@ function HomeScreen() {
     };
     results();
   }, []);
+
   const increaseHandle = () => {
-    setPagination(pagination + 1)
-    // results();
+    if(pagination >= endPage) {
+      setPagination(endPage)
+    } else {
+      console.log()
+      setPagination(pagination + 1)
+    }
+    // resultsPage();
   }
   const minusHandle = () => {
-    setPagination(pagination - 1)
+    if(pagination >= 1) {
+      setPagination(1)
+    } else {
+      console.log()
+      setPagination(pagination - 1)
+    }
   }
   useEffect(() => {
-    const results = async () => {
+    const resultsPage = async () => {
       try {
         console.log(pagination)
         const res = await http.get(`/pagination/products?page=${pagination}`);
         setPage(res.data);
+        setEndPage(res.data.endPage)
         console.log(res.data)
       } catch (err) {
         if (err.res) {
@@ -72,11 +87,12 @@ function HomeScreen() {
         }
       }
     };
-    results();
-  }, []);
+    resultsPage();
+  }, [pagination]);
   // console.log(top)
   // console.log(products)
-  console.log(page.products)
+  // console.log(page.products)
+  // console.log(page)
   return (
     <div>
       <div>
@@ -126,9 +142,18 @@ function HomeScreen() {
             </Col>
           ))}
         </Row>
-        <div>
-          <button onClick={minusHandle}>lui</button>
-          <button onClick={increaseHandle}>toi</button>
+        <div style={{ display: 'flex' }}>
+          <Button variant="outline-secondary" onClick={minusHandle} >
+            <i class="fas fa-chevron-left"></i>
+          </Button >{'  '}
+          <div className='numberPage'>
+            <strong style={{fontSize: "large"}}>{page.numberPageNow}</strong>
+            {/* ...{page.endPage} */}
+          </div>
+          {'  '}
+          <Button variant="outline-secondary" onClick={increaseHandle}>
+            <i class="fas fa-chevron-right"></i>
+          </Button >
         </div>
       </div>
     </div>

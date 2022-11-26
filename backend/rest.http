@@ -8,6 +8,20 @@ GET http://localhost:3010/v1
 ### Products/ Get-all
 GET http://localhost:3010/v1/products
 
+
+
+### Products/ Get-all
+PATCH  http://localhost:3010/v1/product/review/Bred cafe black-milk
+Content-Type: application/json
+Authorization: Bearer 63614c22c2bfc1bf469344d9
+
+{
+    "name":"dien@gmail.com",
+    "comment":"123"
+}
+
+
+
 ###Product/:id
 GET http://localhost:3010/v1/product/635e5477ee5e5c5968c703f1
 

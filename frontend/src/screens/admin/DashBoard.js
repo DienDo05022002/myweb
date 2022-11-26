@@ -121,7 +121,7 @@ const DashBoard = () => {
 
       <div>
         <div className='dashboard-container--order'>
-          {socketOn === true ? alert("You have new orders") : null}
+          {/* {socketOn === true ? alert("You have new orders") : null} */}
           {
             socketOn === true ? (<div className='dashboard-container--newOrder'>
               <i class="fas fa-bell" style={{color: '#ff0000bf', fontSize: '25px'}}></i>

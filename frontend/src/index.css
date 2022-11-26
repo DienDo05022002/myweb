@@ -230,7 +230,7 @@ button.thumbnail {
 /* Feature message */
 .contaner-message {
   border: 0.05px solid rgb(199, 197, 197);
-  background-color: whitesmoke;
+  background-color: white;
   max-width: 400px;
   width: 400px;
   max-height: 450px;
@@ -304,6 +304,25 @@ button.thumbnail {
   margin-left: 10px;
   padding-left: 10px;
 }
+.contaner-message-enemy {
+  width:190px;
+  /* padding-left: 20px;
+  margin-left: auto; */
+  font-size: 0.75rem;
+  background-color: rgba(158, 158, 158, 0.336);
+  border-radius: 7px;
+  padding-left: 10px;
+}
+.contaner-message-text-enemy {
+  width:100%;
+  margin-left: auto;
+}
+.contaner-message-overview-enemy {
+  background-color: #e4e6eb;
+  color:#333;
+  border-radius: 7px;
+  padding-left: 10px;
+}
 .Topcss-img {
   width: 350px;
   height: 390px
@@ -357,4 +376,11 @@ button.thumbnail {
 }
 .order-notyet {
   background-color: rgba(253, 34, 34, 0.733)
+}
+.numberPage {
+  padding: 7px 15px;
+    background: darkgray;
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    margin: 0 3px;
 }
