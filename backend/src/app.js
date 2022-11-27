@@ -38,26 +38,27 @@ app.use(
 );
 
 // app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use("/", (req, res) => {
+  res.json({message: 'Welcome'})
+})
 app.use(require('./api', severRoute));
 
 // const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, '/frontend/build')));
+// app.use(express.static(path.join(__dirname, '/frontend/build')));
 // app.get('*', (req, res) =>
 //   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 // );
-
-app.get('/', (req, res) => {
-  res.send(data.products);
-});
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404, 'Not found'));
 });
-app.use(function (req, res, next) {
+
+app.use(function (err, req, res, next) {
+  res.locals.message = err.message;
+
   res.status(err.status || 500);
+  res.send({ error: err.message });
   res.render('error');
 });
 

@@ -13,7 +13,7 @@ const slider = [
     caption: 'Slide 1'
   },
   {
-    image: "https://res.cloudinary.com/dvz7vll4o/image/upload/c_scale,h_750,w_1717/v1668746408/images-product/bwhwnjei1diciofd2nvf.jpg",
+    image: "https://res.cloudinary.com/dvz7vll4o/image/upload/v1666519630/images-product/zyuee1dwss92yeba2glw.jpg",
     caption: 'Slide 2'
   },
   
@@ -32,7 +32,7 @@ const SlideShow = () => {
             <div className="each-slide" key={index}  style={{width: '100%'}}>
               <div>
                 <img src={slideImage.image} alt='' style={{width: '100%'}}/>
-                <span>{slideImage.caption}</span>
+                {/* <span>{slideImage.caption}</span> */}
               </div>
             </div>
           ))} 
