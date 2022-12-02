@@ -25,8 +25,9 @@
 
 
 ### Technology
->NodeJS
->ExpressJs
->MongoDB
->ReactJS
->Socket.io
+- NodeJS
+- ExpressJs
+- MongoDB
+- ReactJS
+- Socket.io
+End
