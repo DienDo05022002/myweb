@@ -15,11 +15,11 @@ const Updata = () => {
     slug: "",
     category: "",
     image: "",
-    price: "",
-    discount: "",
-    countIn: "",
-    rating: "",
-    numReviews: "",
+    price: 0,
+    discount: 0,
+    countIn: 0,
+    rating: 0,
+    numReviews: 0,
     description: "",
   });
   const [image, setImage] = useState([]);
@@ -89,7 +89,6 @@ const Updata = () => {
     <form onSubmit={handleSubmit} className='container-form'>
             <Form.Group>
               <Form.Control
-                id="name"
                 value={product.name}
                 onChange={handleChange}
                 type="text"
@@ -101,7 +100,6 @@ const Updata = () => {
             --
             <Form.Group>
               <Form.Control
-                id="slug"
                 value={product.slug}
                 onChange={handleChange}
                 type="slug"
@@ -113,7 +111,6 @@ const Updata = () => {
             --
             <Form.Group>
               <Form.Control
-                id="category"
                 value={product.category}
                 onChange={handleChange}
                 type="text"
@@ -125,10 +122,9 @@ const Updata = () => {
             ------------------------------
             <Form.Group>
               <Form.Control
-                id="price"
+                name="price"
                 value={product.price}
                 onChange={handleChange}
-                type="text"
                 placeholder="giá"
                 className='container-form-input'
               ></Form.Control>
@@ -136,10 +132,9 @@ const Updata = () => {
             --
             <Form.Group>
               <Form.Control
-                id="discount"
+                name="discount"
                 value={product.discount}
                 onChange={handleChange}
-                type="text"
                 placeholder="giảm giá"
                 className='container-form-input'
               ></Form.Control>
@@ -147,10 +142,9 @@ const Updata = () => {
             --
             <Form.Group>
               <Form.Control
-                id="countIn"
+                name="countIn"
                 value={product.countIn}
                 onChange={handleChange}
-                type="text"
                 placeholder="tích điểm"
                 className='container-form-input'
               ></Form.Control>
@@ -158,10 +152,9 @@ const Updata = () => {
             --
             <Form.Group>
               <Form.Control
-                id="rating"
+                name="rating"
                 value={product.rating}
                 onChange={handleChange}
-                type="text"
                 placeholder="sao"
                 className='container-form-input'
               ></Form.Control>
@@ -169,10 +162,9 @@ const Updata = () => {
             --
             <Form.Group>
               <Form.Control
-                id="numReviews"
+                name="numReviews"
                 value={product.numReviews}
                 onChange={handleChange}
-                type="text"
                 placeholder="quan tâm"
                 className='container-form-input'
               ></Form.Control>
@@ -180,7 +172,6 @@ const Updata = () => {
             --
             <Form.Group>
               <Form.Control
-                id="description"
                 value={product.description}
                 onChange={handleChange}
                 type="text"

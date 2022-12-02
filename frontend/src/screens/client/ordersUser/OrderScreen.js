@@ -13,9 +13,6 @@ const OrderScreen = () => {
   const storeTokens = localStorage.getItem('tokens');
 
   const [orders, setOrders] = useState({});
-  console.log(orders)
-  // console.log(orders.order.customerOders)
-
   const params = useParams();
   const { id } = params;
   const navigate = useNavigate();
@@ -36,84 +33,76 @@ const OrderScreen = () => {
     results();
     if (!storeUser && !storeTokens) navigate('/login');
   }, [storeUser, storeTokens, navigate, id]);
+
+  const result = orders?.order
+  const customerOder = orders?.order?.customerOders
+  console.log(result)
   return <div>
-        <div className="mt-10">
+    <div className="mt-10">
       <div className="container flex bg-white justify-between md:flex-row flex-col py-4">
         <div className="md:w-[65%] h-[622px] w-full">
           <div className="shadow-md p-4 h-full">
             <h1 className="text-[20px] font-semibold">Chi tiết đơn hàng</h1>
             <div className="mt-4">
-              <div className="my-4 flex items-center justify-between">
-                <label className="block">Tên khách hàng</label>
-                {/* <p>{orders.order.customerInformation.fullName}</p> */}
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+                <strong style={{marginRight:'10px'}} className="block">Tên khách hàng</strong>
+                <p>{result?.customerInformation.fullName}</p>
               </div>
-              <div className="my-4 flex items-center justify-between">
-                <label className="block">Số điện thoai</label>
-                {/* <p>{orders.order.customerInformation.phone}</p> */}
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+                <strong style={{marginRight:'10px'}} className="block">Số điện thoai</strong>
+                <p>{result?.customerInformation.phone}</p>
               </div>
-              <div className="my-4 flex items-center justify-between">
-                <label className="block">Địa chỉ</label>
-                {/* <p>{orders.order.customerInformation.address}</p> */}
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+                <strong style={{marginRight:'10px'}} className="block">Địa chỉ</strong>
+                <p>{result?.customerInformation.address}</p>
               </div>
-              <div className="my-4 flex items-center justify-between">
-                <label className="block">Phương thức thanh toán</label>
-                {/* <p>{oderDetails?.payments}</p> */}
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+                <strong style={{marginRight:'10px'}} className="block">Thanh toán bằng</strong>
+                <p>{result?.methodPay}</p>
               </div>
-              <div className="my-4 flex items-center justify-between">
-                <label className="block">Trạng thái đơn hàng</label>
-                {/* <p>{oderDetails?.statusOrder}</p> */}
-              </div>
-              <div className="my-4 flex items-center justify-between">
-                <label className="block">Trạng thái đơn hàng</label>
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+                <strong style={{marginRight:'10px'}} className="block">Thanh toán</strong>
                 <p>
-                  {/* {oderDetails?.isPaid ? "Đã thanh toán" : "Chưa thanh toán"} */}
+                  {result?.isPaid ? "Đã thanh toán" : "Chưa thanh toán"}
                 </p>
               </div>
-              <div className="my-4 flex items-center justify-between">
-                <label className="block">Thời gian mua</label>
-                {/* <p>{oderDetails?.createdAt}</p> */}
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+              <strong style={{marginRight:'10px'}} className="block">Trạng thái đơn hàng</strong>
+                <p>
+                  {result?.isDelivered ? "Đã nhận" : "Chưa nhận"}
+                </p>
+              </div>
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+                <strong style={{marginRight:'10px'}} className="block">Thời gian mua</strong>
+                <p>{result?.createdAt}</p>
+                {/* <p>{result?.createdAt.substring(0, 10)} {''} ({result?.createdAt.substring(11, 19)})</p> */}
               </div>
 
-              <div className="my-4 flex items-center justify-between">
-                <label className="block mb-3">Ghi chú</label>
-                {/* <p>
-                  {oderDetails?.note?.length > 0
-                    ? oderDetails?.note
+              <div className="my-4 flex items-center justify-between" style={{display: 'flex'}}>
+                <strong style={{marginRight:'10px'}} className="block mb-3">Ghi chú</strong>
+                <p>
+                  {result?.note?.length > 0
+                    ? result?.note
                     : "Không có"}
-                </p> */}
+                </p>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="md:w-[30%] w-full h-[622px] overflow-auto shadow-md">
-          <div className="p-4">
-            <h1 className="text-[20px] font-semibold">Tổng giá trị đơn hàng</h1>
-          </div>
-          <div>
-            {/* {oderDetails?.products?.map((p) => (
-              <CartItem
-                key={p.colors + p.memorys}
-                cart={p}
-                showQuanty={false}
-              />
-            ))} */}
-          </div>
-          <div className="w-[100%] bg-[#ffd400] p-4 text-white">
-            <h1 className="text-2xl font-semibold">Sumary</h1>
-            <div className="flex items-center justify-between mt-4">
-              <p className="text-md">Total Products</p>
-              {/* <p className="text-md">{oderDetails?.products?.length}</p> */}
-            </div>
-            <div className="flex items-center justify-between mt-4">
-              <p className="text-md">Total</p>
-              <p className="text-md">
-                {/* <NumberFormat
-                  value={oderDetails?.totalOrder}
-                  displayType={"text"}
-                  thousandSeparator={true}
-                  suffix={"đ"}
-                /> */}
-              </p>
+              <div>
+                <strong style={{marginRight:'10px'}} className="block">Đơn mua</strong>
+                <div>
+                  {customerOder?.map((o) => (<div key={o._id}>
+                    <div>
+                      <p>Tên: {o.name}</p>
+                      <p>Giá: {o.price}</p>
+                      <p>Số lượng: {o.quantiny}</p>
+                      <img style={{width: '100px'}} src={o.image} alt=''/>
+                    </div>
+                  </div>))}
+                </div>
+                <div>
+                  <strong style={{marginRight:'10px'}} className="block">Tổng đơn mua:</strong>
+                  <strong>{result?.totalOrders}</strong>
+                </div>
+                </div>
             </div>
           </div>
         </div>

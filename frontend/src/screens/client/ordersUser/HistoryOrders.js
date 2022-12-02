@@ -30,6 +30,15 @@ const HistoryOrders = () => {
     };
     results();
   }, [storeUser, storeTokens, navigate]);
+  console.log(orders.length)
+  
+  if(orders.length === 0) {
+    return(
+    <div className="cart-empty">
+      Lịch sử đơn hàng trống.  <Link to="/">Mua ngay</Link>
+    </div>
+    )
+  }
   return (
     <div>
       <table className="table">
@@ -51,14 +60,14 @@ const HistoryOrders = () => {
             }
             >
               <td>{order?._id}</td>
-              <td>{order.createdAt.substring(0, 10)}</td>
+              <td>{order.createdAt.substring(0, 10)} {''} ({order.createdAt.substring(11, 19)})</td>
               <td>{order.totalOrders}.000₫</td>
               <td>{order.isPaid === true 
                 ? <p style={{marginBottom: '0'}}>Đã thanh toán</p> 
                 : <p style={{marginBottom: '0'}}>Chưa thanh toán</p>}</td>
               <td>{order.isDelivered === true 
-                ? <p style={{marginBottom: '0'}}>Đã thanh toán</p> 
-                : <p style={{marginBottom: '0'}}>Chưa thanh toán</p>}
+                ? <p style={{marginBottom: '0'}}>Đã nhận</p> 
+                : <p style={{marginBottom: '0'}}>Chưa nhận</p>}
               </td>
               <td>
                 <Button

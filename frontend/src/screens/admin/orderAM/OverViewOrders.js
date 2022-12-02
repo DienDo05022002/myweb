@@ -49,6 +49,9 @@ const OverViewOrders = () => {
     //     console.log({err})
     //   }
     // }
+    const dayOrder = orders.order
+    // const day = dayOrder.getDate()
+    // console.log(dayOrder.createdAt)
 
     useEffect(() => {
         const results = async () => {
@@ -101,6 +104,7 @@ const OverViewOrders = () => {
                 <Col md={3} style={{ display: 'flex' }}>
                   <i class="fas fa-calendar-day "></i>
                   <p>{i.createdAt.substring(0, 10)}</p>
+                  <p> {'*'} ({i.createdAt.substring(11, 19)})</p>
                 </Col>
                 <Col md={2} style={{ display: 'flex' }}>
                     <div>

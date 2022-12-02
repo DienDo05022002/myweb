@@ -70,8 +70,8 @@ const Create = () => {
     try {
       const res = await http.post('/admin/addProduct', newProduct);
       if (res.data.success) console.log(res.data);
-
       navigate('/admin-page/products');
+      toast.success('Create new product successfully')
     } catch (err) {
       // toast.error('email or password not defind');
       console.log({err})

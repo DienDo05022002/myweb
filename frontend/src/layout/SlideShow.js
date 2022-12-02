@@ -13,7 +13,7 @@ const slider = [
     caption: 'Slide 1'
   },
   {
-    image: "https://res.cloudinary.com/dvz7vll4o/image/upload/v1666519630/images-product/zyuee1dwss92yeba2glw.jpg",
+    image: "https://res.cloudinary.com/dvz7vll4o/image/upload/c_scale,w_1300/v1666519630/images-product/zyuee1dwss92yeba2glw.jpg",
     caption: 'Slide 2'
   },
   

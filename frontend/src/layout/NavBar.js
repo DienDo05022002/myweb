@@ -78,16 +78,18 @@ console.log({cart})
     }
   };
   const resultSearch = dropdownOptions.results
-  const debounceDropDown = useRef(debounce((nextValue) => fetchDropdownOptions(nextValue), 200)).current;
+  const debounceDropDown = useRef(debounce((nextValue) => fetchDropdownOptions(nextValue), 300)).current;
 
   const submitHandlerSearch = async (value) => {
     try {
       const res = await http.get(`/search/find?q=${value}`);
       setQuery(res.data);
-      navigate( `/search/find?q=${query}` );
+      navigate( `/search/find?q=${query}`);
     } catch (err) {
-      toast.error('Không có sản phẩm bạn tìm kiếm:(');
+      setQuery('')
+      // toast.error('Không có sản phẩm bạn tìm kiếm:(');
     }
+    console.log(query)
   }
   const handleInputOnchange = (e) => {
     const { value } = e.target;
@@ -98,7 +100,7 @@ console.log({cart})
     submitHandlerSearch(value)
   };
   // ------------------------------------------------------------------------------------------------------------------------
-  // END
+  // END feature search
   // ------------------------------------------------------------------------------------------------------------------------
   const sideBarCategories = async () => {
     setSidebarIsOpen(true)
@@ -154,7 +156,18 @@ console.log({cart})
                       />
                       <Button
                         variant="light"
-                        onClick={() => navigate('/search/find')}
+                        onClick={(keyword) => {
+                          console.log(keyword)
+                          try {
+                            const res = http.get(`/search/find?q=${keyword}`);
+                            setQuery(res.data);
+                            navigate( `/search/find?q=${query}`);
+                          } catch (err) {
+                            setQuery('')
+                            // toast.error('Không có sản phẩm bạn tìm kiếm:(');
+                          }
+                          setDropdownOptions([])
+                        }}
                       >
                         <i className="fas fa-search"></i>
                       </Button>
@@ -162,7 +175,9 @@ console.log({cart})
                   </form>
                     <div className='dropdown-search' style={{color:'red'}}>
                         {resultSearch && resultSearch.map((result) => (
+                          <buuton onClick={() => setDropdownOptions([])}>
                           <SearchProductsItem data={result} key={result._id}/>
+                          </buuton>
                         ))}
                     </div>
 

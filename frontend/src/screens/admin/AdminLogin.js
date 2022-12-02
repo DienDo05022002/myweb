@@ -40,8 +40,8 @@ const AdminLogin = () => {
         }
       };
   return (
-    <div>
-        <div className="container-login">
+    <div style={{height: '600px'}}>
+      <div className="container-login">
       <Container className="small-container login-small-container">
         <div>
           <title>Welcome to the regent</title>

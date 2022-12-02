@@ -44,7 +44,11 @@ function ProductScreen() {
     results();
   }, [slug , refresh]);
   const review = productDetail.reviews
-  // console.log(review)
+  console.log(productDetail)
+  //handle discount
+  const percentDiscount = productDetail.discount
+  const priceDiscount = productDetail.price - productDetail.price * (productDetail.discount / 100)
+  console.log("priceDiscount:"+Math.round(priceDiscount))
   useEffect(() => {
     const selectCategory = async () => {
       console.log(productDetail.category);
@@ -92,13 +96,19 @@ function ProductScreen() {
   return (
     <div>
       <Row className="row-detail">
-        <Col md={6}>
+        <Col md={6} className='css-discount'>
           <img
             src={productDetail?.image}
             alt={productDetail?.name}
             className="img-large"
           />
-          <p>{productDetail?.name}</p>
+            {percentDiscount === 0 ? null : (
+              <div className='css-percentDiscount'>
+                <strong className='css-percentDiscount-text'>Giảm</strong>
+                <strong className='css-percentDiscount-percent'>{percentDiscount}%</strong>
+              </div>
+            )}
+          {/* <p>{productDetail?.name}</p> */}
         </Col>
         <Col md={4}>
           <ListGroup variant="flush">
@@ -107,9 +117,28 @@ function ProductScreen() {
             </ListGroup.Item>
             <div>
               <Card.Title>{productDetail?.name}</Card.Title>
-              <Card.Title>{productDetail?.discount}{'.000'}</Card.Title>
-              <Card.Text className="title-product">
-                <p>Giá: <span className='icon-price'>₫</span>{productDetail?.price}{'.000'}</p>
+              {/* <Card.Title>{productDetail?.discount}</Card.Title> */}
+              <Card.Text className="title-product background-price">
+                {/* <p>Giá: <span className='icon-price'>₫</span>{productDetail?.price}</p> */}
+                {percentDiscount === 0 ? (
+                <div className='price-original'>
+                  <strong>Giá :{' '}</strong>
+                  <span className="icon-price">₫</span>
+                  <div>{productDetail?.price}</div>
+                </div>
+              ) : (
+                <div className='price-priceDiscount'>
+                  <div className='price-old'>
+                    <span className="icon-price">₫</span>
+                    <div>{productDetail?.price}</div>
+                  </div>
+                  <strong style={{margin: '3px'}}>Giảm</strong>
+                  <div className='price-new'>
+                    <span className="">₫</span>
+                    <div>{priceDiscount}</div>
+                  </div>
+                </div>
+              )}
               </Card.Text>
             </div>
             <div>
@@ -148,15 +177,14 @@ function ProductScreen() {
             />
             <Button className='floating-button' style={{backgroundColor: 'blue'}}
               onClick={ async () => {
-                const res = await http.patch(`/product/review/${slug}`, {
+                const res = await http.patch(`/product/review/${productDetail._id}`, {
                   name: nameUser,
                   comment: comment
                 }) 
-                setComment('')
                 if(res.data.success) {
-                  // setComment('')
                   console.log(res.data)
                   setRefresh((f) => f + 1 )
+                  setComment('')
                 }
               }}
             >Gửi bình luận</Button>

@@ -58,26 +58,36 @@ router.get('/product/slug/:slug', async (req, res, next) => {
     res.status(400).json({ error: { name: err.name, messgae: err.message } });
   }
 });
-// Comment and review 
-router.patch('/product/review/:slug', async (req, res, next) => {
-  const { slug } = req.params.slug;
+router.get('/product/textslug/:slug', async (req, res, next) => {
+  const {slug} = req.params.slug;
   try {
-    const review = {
-      name: req.body.name,
-      comment: req.body.comment,
-      // userId: req.userId
-    };
-    console.log("param:"+req.params)
-    console.log("body:"+req.body)
-
-    const addReview = await Product.findOneAndUpdate(
-      slug,
+    const product = await Product.findOne(slug);
+    res.json({
+      // slug: slug,
+      slug: req.params.slug ,
+      product
+    });
+  } catch (err) {
+    res.status(400).json({ error: { name: err.name, messgae: err.message } });
+  }
+});
+// Comment and review 
+router.patch('/product/review/:id', async (req, res, next) => {
+  const id  = req.params.id;
+  const review = {
+    name: req.body.name,
+    comment: req.body.comment
+  }
+  try {
+    const addReview = await Product.findByIdAndUpdate(
+      id,
       {$push: {reviews: review}},
       { new: true }
     );
     return res.status(200).json({
       success: true,
-      slug: slug,
+      id: req.params.id,
+      useReview: review,
       addReview
     });
   } catch (error) {

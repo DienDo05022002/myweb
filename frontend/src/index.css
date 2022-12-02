@@ -180,7 +180,13 @@ button.thumbnail {
 } 
 .place--order--button {
   background-color: whitesmoke;
-  color:#333333
+  color: #333333;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 7px;
+  margin-top: 15px;
+  text-decoration: none;
+  font-weight: 700;
 }
 .menu-bar {
   justify-content: center;
@@ -383,4 +389,40 @@ button.thumbnail {
     border: 1px solid darkgray;
     border-radius: 10px;
     margin: 0 3px;
+}
+.css-discount {
+  position: relative;
+}
+.css-percentDiscount {
+    position: absolute;
+    background-color: rgb(226, 223, 57);
+    padding: 3px 5px;
+    top: 0;
+    right: 0;
+}
+.css-percentDiscount-text {
+  color: white;
+  padding-right: 5px;
+}
+.css-percentDiscount-percent {
+  color: red
+}
+.price-original {
+  display: flex;
+}
+.price-priceDiscount {
+  display: flex;
+}
+.price-old {
+  display: flex;
+  text-decoration: line-through;
+  margin-right: 20px;
+}
+.price-new {
+  display: flex;
+  font-size: larger;
+  font-weight: bold;
+}
+.background-price {
+  background-color:#fafafa
 }

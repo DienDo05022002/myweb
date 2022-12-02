@@ -38,9 +38,9 @@ app.use(
 );
 
 // app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/", (req, res) => {
-  res.json({message: 'Welcome'})
-})
+// app.use("/", (req, res) => {
+//   res.json({message: 'Welcome'})
+// })
 app.use(require('./api', severRoute));
 
 // const __dirname = path.resolve();

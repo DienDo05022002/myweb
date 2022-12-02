@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -31,7 +31,7 @@ const PlaceOrderScreen = () => {
   const storePay = localStorage.getItem('selectorPaymentMethod');
 
   const { state, dispatch } = useContext(Store);
-  console.log(dispatch)
+  // console.log(dispatch)
   const {
     cart: { cartItem, shippingAddress },
   } = state;
@@ -46,8 +46,28 @@ const PlaceOrderScreen = () => {
   // console.log(storePay);
 
   const totalRound1 = cartItem.reduce((a, b) => a + b.price * b.quantiny, 0);
-  const countInPoin = cartItem.reduce((a, b) => a + b.countIn, 0);
-  const totalRound2 = totalRound1 + 0;
+  const countInPoin = cartItem.reduce((a, b) => a + b.discount, 0);
+  // const totalRound2 = totalRound1 + 0;
+  console.log(totalRound1)
+  console.log(countInPoin)
+
+  const totalOrder = useMemo(() => {
+    return cartItem.reduce((final, item) => {
+      final +=
+        (item.price - item.price * (item.discount / 100)) * item.quantiny
+        return final
+      }, 0);
+  }, [cartItem])
+  // console.log("totalOrder::" + totalOrder)
+  const discountOrder = useMemo(() => {
+    return cartItem.reduce((final, item) => {
+      final +=
+        (item.price * (item.discount / 100)) * item.quantiny
+        return final
+      }, 0);
+  }, [cartItem])
+  // console.log("discountOrder:: "+ discountOrder)
+
   //Check
   const navigate = useNavigate();
   useEffect(() => {
@@ -63,7 +83,7 @@ const PlaceOrderScreen = () => {
         customerOders: cartItem,
         customerInformation: shippingAddress,
         methodPay: storePay,
-        totalOrders: totalRound2,
+        totalOrders: totalOrder,
       });
       //Socket emit
       console.log(res.data)
@@ -102,7 +122,7 @@ const PlaceOrderScreen = () => {
                   <strong>Ghi chú cho shipper: </strong> {shippingAddress.note}{' '}
                   <br />
                 </Card.Text>
-                <Link to="/ship-address">Sửa</Link>
+                <Link to="/ship-address" className="place--order--button">Sửa</Link>
               </Card.Body>
             </Card>
             {/* ---------------------------------------------------- */}
@@ -111,7 +131,7 @@ const PlaceOrderScreen = () => {
                 <Card.Title>Thanh toán bằng</Card.Title>
                 <strong>Ví điện tử: </strong>
                 <Card.Text>{storePay}</Card.Text>
-                <Link to="/payment">Sửa</Link>
+                <Link to="/payment" className="place--order--button">Sửa</Link>
               </Card.Body>
             </Card>
             {/* ---------------------------------------------------- */}
@@ -130,10 +150,10 @@ const PlaceOrderScreen = () => {
                           ></img>{' '}
                           <Link to={`/product/${item.slug}`}>{item.name}</Link>
                         </Col>
-                        <Col md={3}>
+                        {/* <Col md={3}>
                           <span>Quantity:{item.quantity}</span>
-                        </Col>
-                        <Col md={3}>${item.price}</Col>
+                        </Col> */}
+                        <Col md={3}><span className='icon-price'>₫</span>{item.price}</Col>
                       </Row>
                     </ListGroup.Item>
                   ))}
@@ -156,7 +176,7 @@ const PlaceOrderScreen = () => {
                       <Col>Tổng</Col>
                       <Col>
                         {totalRound1}
-                        {'.000 '}
+                        <span className='icon-price'>₫</span>
                       </Col>
                       {/* {cartItem.price} */}
                     </Row>
@@ -170,7 +190,7 @@ const PlaceOrderScreen = () => {
                   <ListGroup.Item>
                     <Row>
                       <Col>Giảm giá</Col>
-                      <Col>0</Col>
+                      <Col>{discountOrder}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
@@ -189,8 +209,8 @@ const PlaceOrderScreen = () => {
                       </Col>
                       <Col>
                         <strong>
-                          {totalRound2}
-                          {'.000 '}
+                          {totalOrder}
+                          <span className='icon-price'>₫</span>
                         </strong>
                       </Col>
                     </Row>

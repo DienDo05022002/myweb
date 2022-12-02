@@ -10,17 +10,20 @@ GET http://localhost:3010/v1/products
 
 
 
-### Products/ Get-all
-PATCH  http://localhost:3010/v1/product/review/Bred cafe black-milk
+### Products/ Comment and review 
+PATCH http://localhost:3010/v1/product/review/637f1097749792376c0e2a08
 Content-Type: application/json
-Authorization: Bearer 63614c22c2bfc1bf469344d9
 
 {
     "name":"dien@gmail.com",
-    "comment":"123"
+    "comment":"oke next"
 }
 
+###Product/:slug
+GET http://localhost:3010/v1/product/textslug/Brad cafe ColdBrew  Navite
 
+###Product/:slug
+GET http://localhost:3010/v1/product/slug/Brad cafe ColdBrew  Navite
 
 ###Product/:id
 GET http://localhost:3010/v1/product/635e5477ee5e5c5968c703f1

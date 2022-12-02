@@ -1,4 +1,4 @@
-import React from 'react';
+import {useMemo} from 'react';
 import { Store } from '../Store';
 import { useContext } from 'react';
 import Row from 'react-bootstrap/esm/Row';
@@ -16,6 +16,24 @@ const CartScreen = () => {
     cart: { cartItem },
   } = state;
   console.log(cartItem);
+
+  //------handle discount---------------------------------------------
+  const totalOrder = useMemo(() => {
+    return cartItem.reduce((final, item) => {
+      final +=
+        (item.price - item.price * (item.discount / 100)) * item.quantiny
+        return final
+      }, 0);
+  }, [cartItem])
+  console.log("totalOrder::" + totalOrder)
+  const discountOrder = useMemo(() => {
+    return cartItem.reduce((final, item) => {
+      final +=
+        (item.price * (item.discount / 100)) * item.quantiny
+        return final
+      }, 0);
+  }, [cartItem])
+  console.log("discountOrder:: "+ discountOrder)
 
   const updataCartHandler = async (i, quantiny) => {
     const data = await http.get(`product/${i._id}`);
@@ -78,7 +96,7 @@ const CartScreen = () => {
                         </Button>
                       </Col>
                       <Col md={3}>
-                        <span>${i.price}</span>
+                        <span><span className='icon-price'>₫</span>{i.price}</span>
                       </Col>
                       <Col md={2}>
                         <Button
@@ -103,10 +121,17 @@ const CartScreen = () => {
                     Hóa đơn:({cartItem.reduce((a, b) => a + b.quantiny, 0)} Sản
                     phẩm) :{' '}
                     <p>
-                      $Giá :
+                    <span className='icon-price'>₫</span>Giá :
                       {cartItem.reduce((a, b) => a + b.price * b.quantiny, 0)}{' '}
                     </p>
                   </h5>
+                  <div style={{ display: 'flex'}}>
+                    <strong>Giảm:</strong>
+                    <div><strong style={{fontSize: 'small'}}>{' '}₫{' '}</strong>{discountOrder}</div>
+                  </div>
+                  <h4>
+                    Tổng:  <strong style={{fontSize: 'large'}}>₫{' '}</strong>{totalOrder}
+                  </h4>
                   <Link to="/ship-address">
                       <Button>Thanh toán</Button>
                     </Link>
