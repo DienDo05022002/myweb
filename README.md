@@ -30,6 +30,3 @@
 >MongoDB
 >ReactJS
 >Socket.io
->React-Bootstrap
->Cloudinary & Multer
->Jsonwebtoken
