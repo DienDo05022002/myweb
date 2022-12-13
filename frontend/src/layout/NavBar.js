@@ -29,7 +29,7 @@ import { Form } from 'react-router-dom';
 import http from '../api/axiosApi';
 import Search from './Search';
 import SearchProductsItem from '../components/SearchProductsItem';
-import { useSearchParams } from '../hook/useSearchParams';
+// import { useSearchParams } from '../hook/useSearchParams';
 import { debounce } from "lodash"
 import CategorySideBar from '../components/CategorySideBar';
 
@@ -57,7 +57,7 @@ console.log({cart})
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const [results, setResults] = useState([]);
 // ------------------------------------------------------------------------------------------------------------------------
 // FEATURE SEARCH

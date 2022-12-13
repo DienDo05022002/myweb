@@ -10,7 +10,6 @@ const config = {
   reconnection: true,
   reconnectionDelay: 5000,
   reconnectionAttempts: 10,
-  // transports: ['polling'],
 };
 
 let socket = io(socketServerUrl, config);
@@ -19,7 +18,6 @@ socket.on('connect', () => {
 });
 
 const Realtime = () => {
-  const [username, setUsername] = useState('');
   const [messages, setMessages] = useState('');
   const [messagesReceived, setMessagesReceived] = useState([]);
   const name = localStorage.getItem('user');
@@ -44,8 +42,8 @@ const Realtime = () => {
       // }
     });
   }, []);
-  console.log(messagesReceived);
-  console.log(openMes)
+  // console.log(messagesReceived);
+  // console.log(openMes)
   return (
     <div className='contaner-message--chat'>
     <div>
@@ -85,8 +83,29 @@ const Realtime = () => {
       </div>
 
 
-      {/* <form onSubmit={sendMessage}> */}
       <div className='contaner-message-send'>
+        {/* {name !== null ? (<div>
+          <input
+          className="contaner-message-input"
+          placeholder="Message..."
+          value={messages}
+          onChange={(event) => {
+            setMessages(event.target.value);
+          }}
+        />
+        <Button variant="primary" onClick={sendMessage} className="contaner-message-button">
+          <i class="fas fa-paper-plane" style={{color: 'white'}}></i>
+        </Button>
+        </div>) : (<div>
+          <input
+            disabled
+            className="contaner-message-input"
+            placeholder="Vui lòng đăng nhập để Chat"
+          />
+          <Button variant="primary" className="contaner-message-button" disabled>
+            <i class="fas fa-paper-plane" style={{color: 'white'}}></i>
+          </Button>
+        </div>)} */}
         <input
           className="contaner-message-input"
           placeholder="Message..."
@@ -99,7 +118,6 @@ const Realtime = () => {
           <i class="fas fa-paper-plane" style={{color: 'white'}}></i>
         </Button>
       </div>
-      {/* </form> */}
     </div>
     </div>
     </div>
