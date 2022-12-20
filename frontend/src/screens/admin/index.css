@@ -58,9 +58,6 @@
     border: 0.05px solid palegreen;
     background-color: palegreen;
 }
-.pay-not-yet {
-
-}
 
 .linkDetail-order {
     text-decoration: none;
@@ -101,18 +98,6 @@
     border: 0.05px solid #33333341;
     padding: 10px 30px
 }
-.orderD-container-code {
-
-}
-.orderD-container-user {
-
-}
-.orderD-container-status {
-
-}
-.orderD-container-order {
-
-}
 .container-form-label{
     background: aliceblue;
     padding: 5px;
@@ -149,9 +134,6 @@
     justify-content: center;
     margin: 20px;
     height: 200px;
-}
-.dashboard-container--newOrder {
-
 }
 .dashboard-container--message {
     background: yellow;

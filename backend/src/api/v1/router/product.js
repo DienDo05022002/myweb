@@ -134,18 +134,6 @@ router.post('/products', cloudinary.single('file'), async (req, res, next) => {
     description,
     
   } = req.body;
-  // const product = new Product({
-  //   name,
-  //   slug,
-  //   category,
-  //   image: file?.path,
-  //   price,
-  //   discount,
-  //   countIn,
-  //   rating,
-  //   numReviews,
-  //   description,
-  // });
   if (!file) {
     const error = new Error('Please upload a file');
     error.httpStatusCode = 400;
@@ -174,7 +162,8 @@ router.post('/admin/addProduct', async (req, res, next) => {
     numReviews,
     description,
     active,
-    rollTop
+    rollTop,
+    reviews
   } = req.body;
   const product = new Product({
     name,
@@ -188,15 +177,28 @@ router.post('/admin/addProduct', async (req, res, next) => {
     numReviews,
     description,
     active,
-    rollTop
+    rollTop,
+    reviews: reviews || '',
   });
-  if (!image) {
-    const error = new Error('Please upload a file');
-    error.httpStatusCode = 400;
-    return next(error);
+  try {
+    // if (!image) {
+    //   const error = new Error('Please upload a file-image');
+    //   error.httpStatusCode = 400;
+    //   return next(error);
+    // }
+    await product.save();
+    res.status(201).json({ success: true , product });
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, message: ' server error' })
   }
-  await product.save();
-  res.status(201).json({ success: true , product });
+  // if (!image) {
+  //   const error = new Error('Please upload a file');
+  //   error.httpStatusCode = 400;
+  //   return next(error);
+  // }
+  // await product.save();
+  // res.status(201).json({ success: true , product });
 });
 //------------------------------------------------------------------------------------------------------------------------------
 //   Get By Category

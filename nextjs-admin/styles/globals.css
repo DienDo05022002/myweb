@@ -1,0 +1,102 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+.edit-link {
+  text-decoration: none;
+}
+.dashboard-container {
+  min-height: 350px;
+}
+.dashboard-container--div {
+  justify-content: center;
+  border-bottom: 0.05px solid rgba(51, 51, 51, 0.61);
+}
+.dashboard-container--text {
+  margin: 20px;
+  width: 75px
+}
+.dashboard-title-welcome {
+  display: flex;
+  justify-content: center;
+  background-color: aliceblue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.dashboard-container--order {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  height: 200px;
+}
+.dashboard-container--message {
+  background: yellow;
+  padding: 0 10px;
+}
+.dashboard-container--p{
+  padding:5px;
+  background-color: rgba(248, 15, 15, 0.11)
+}
+.table-product {
+  position: absolute;
+  margin-top: 65px;
+}
+.table-link-button {
+  position: relative;
+  left: 1200px;
+  top: 12px;
+}
+.pay-success-fully {
+  border: 0.05px solid palegreen;
+  background-color: palegreen;
+}
+.container-main {
+  justify-content: space-around
+}
+.container-form {
+  max-width: 520px;
+}
+.container-form-input {
+  width: 200%;
+}
+.container-form-select-red {
+  background: #ff0000ad;
+  color: white;
+  width: 65px;
+}
+.container-form-select-green {
+  background: #318000d1;
+  color: white;
+  width: 60px;
+}
+.img-form {
+  width: 200px;
+  height: 250px;
+  border: 0.05px solid rgba(51, 51, 51, 0.226);
+  margin-left: 15px;
+}
+.listItem-users {
+  justify-content: space-between;
+}

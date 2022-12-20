@@ -115,9 +115,9 @@ POST http://localhost:3010/v1/register
 Content-Type: application/json
 
 {
-    "name": "dien",
+    "name": "dien1111",
     "password": "123",
-    "email": "dien05022002@gmail.com",
+    "email": "dien0502@gmail.com",
     "roleId": "user"
     
 }
@@ -150,19 +150,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxM
 
 {
     "name": "dien1234",
-    "password": "123",
+    "password": "121",
     "email": "dien1234@gmail.com",
     "roleId": "user"
     
 }
 
 ### updataUser
-PATCH  http://localhost:3010/v1/updataUsers/63614bcbd1eb265c5487a491
+PATCH  http://localhost:3010/v1/updataUsers/63613bb6783c3a1680ea78f2
 
 {
-    "name": "dien0502",
-    "password": "123",
-    "email": "dien05022002@gmail.com",
+    "name": "dien1234",
+    "password": "1212",
+    "email": "dien1234@gmail.com",
     "roleId": "user"
     
 }
@@ -172,7 +172,7 @@ PATCH  http://localhost:3010/v1/updataUsers/63614bcbd1eb265c5487a491
 ### Products/ Get-all
 GET http://localhost:3010/v1/admin/getProducts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2Nzg4MjI0MX0.EJdQr_7TywaO6Iu-0-V8AF1PlM-7B9KMIBBDoCYE9nU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY3MTE3NDY2OX0.6MdK2CISqbThZm4MMUr8PNnYvU1MB9yieaIK57HuaFo
 
 
 ### Products/ Get-byId
@@ -192,13 +192,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxN
 ### Orders/ Get-all
 GET http://localhost:3010/v1/admin/getAllOrders
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODk1NDgzMn0.Uu6UnwOgTKQSz9_DaSpGI_DBwlAv98oWD_ZxRKvSD_A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY3MTE3NDY2OX0.6MdK2CISqbThZm4MMUr8PNnYvU1MB9yieaIK57HuaFo
 
 
 ### Orders/ Get-byId
 GET http://localhost:3010/v1/admin/getOrderById/637a25d2599ae51a235b9be9
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY2ODk1NDgzMn0.Uu6UnwOgTKQSz9_DaSpGI_DBwlAv98oWD_ZxRKvSD_A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzYxNGJjYmQxZWIyNjVjNTQ4N2E0OTEiLCJyb2xlSWQiOiJhZG1pbiIsImlhdCI6MTY3MTE3NDY2OX0.6MdK2CISqbThZm4MMUr8PNnYvU1MB9yieaIK57HuaFo
+
 
 
 ### Orders/ Get-byId
@@ -215,3 +216,22 @@ GET http://localhost:3010/v1/admin/getAllOrdersToday
 Content-Type: application/json
 
 
+### category
+GET http://localhost:3010/v1/admin/category/combo
+Content-Type: application/json
+
+
+
+### category
+GET http://localhost:3010/v1/admin/getAllCategory
+Content-Type: application/json
+
+
+###
+POST http://localhost:3010/v1/admin/createCategory
+Content-Type: application/json
+
+{
+    "categories": "single",
+    "description": ""
+}

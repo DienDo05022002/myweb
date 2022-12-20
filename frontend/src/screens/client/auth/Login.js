@@ -93,12 +93,12 @@ function Login() {
         </form>
       </Container>
       </div>
-    <div className='admin-login'>
+    {/* <div className='admin-login'>
         <strong className='admin-title-login'>You are Admin pages</strong>
         <Button className='admin-bt-login' variant="dark">
             <Link to='/admin-login' className='admin-link-login'>Login</Link>
         </Button>
-    </div>
+    </div> */}
     </div>
   );
 }

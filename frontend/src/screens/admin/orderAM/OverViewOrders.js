@@ -12,46 +12,7 @@ import { toast } from "react-toastify";
 
 const OverViewOrders = () => {
     const [orders, setOrders] = useState([])
-    // const [isPaid, setIsPaid] = useState(false)
-
-    // const checkOrderHandle = async (id) => {
-    //   console.log(id)
-    //   setIsPaid(true)
-    //   const newPatch = {
-    //     isPaid: isPaid,
-    //     // isDelivered: isDelivered
-    //   };
-    //   console.log(newPatch)
-    //   try {
-    //     const res = await http.patch(`/admin/updataOrder/${id}`, newPatch);
-    //     if (res.data.success) console.log(res.data);
-    //     await http.get('/admin/getAllOrders');
-    //     toast.success('Paid Successfully')
-    //   } catch (err) {
-    //     toast.error('Faild');
-    //     console.log({err})
-    //   }
-    // }
-    // const handleAgain = async (id) => {
-    //   setIsPaid(false)
-    //   const newPatch = {
-    //     isPaid: isPaid,
-    //     // isDelivered: isDelivered
-    //   };
-    //   console.log(newPatch)
-    //   try {
-    //     const res = await http.patch(`/admin/updataOrder/${id}`, newPatch);
-    //     if (res.data.success) console.log(res.data);
-    //     await http.get('/admin/getAllOrders');
-    //     toast.success('Patch')
-    //   } catch (err) {
-    //     toast.error('Faild');
-    //     console.log({err})
-    //   }
-    // }
-    const dayOrder = orders.order
-    // const day = dayOrder.getDate()
-    // console.log(dayOrder.createdAt)
+    // const dayOrder = orders.order
 
     useEffect(() => {
         const results = async () => {

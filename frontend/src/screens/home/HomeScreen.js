@@ -15,7 +15,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 
 function HomeScreen() {
-  // const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [top, setTop] = useState([]);
   const [pagination, setPagination ] = useState(1);
   const [page, setPage ] = useState([]);
@@ -89,7 +89,7 @@ function HomeScreen() {
     };
     resultsPage();
   }, [pagination]);
-  // console.log(top)
+  console.log(page)
   // console.log(products)
   // console.log(page.products)
   // console.log(page)
