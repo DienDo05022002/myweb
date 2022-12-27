@@ -178,7 +178,7 @@ router.post('/admin/addProduct', async (req, res, next) => {
     description,
     active,
     rollTop,
-    reviews: reviews || '',
+    reviews: reviews || {},
   });
   try {
     // if (!image) {

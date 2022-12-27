@@ -40,9 +40,13 @@ const index = ({users}) => {
                 <div>
                   <div>Name: {c.name}</div>
                   <div>Email: {c.email}</div>
+                  {/* <div>{c._id}</div> */}
                 </div>
                 <div>
-                  <Button variant="outline-primary">Edit Password</Button>{' '}
+                  <Link href={`users/${c._id}`}>
+                    <Button variant="outline-primary">Edit Password</Button>
+                  </Link>
+                  {' '}
                   <Button
                     variant="outline-danger"
                     className="p-container-bt"

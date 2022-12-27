@@ -38,61 +38,8 @@ export async function getServerSideProps(context) {
 const DashBoard = ({getAllProducts, getAllUsers, getAllOrders, getAllCategory}) => {
   console.log(getAllCategory)
   const [freshToken, setFreshToken] = useState()
-  // const [products, setProducts] = useState([]);
-  // const [user, setUser] = useState([]);
-  // const [orders, setOrders] = useState([]);
   const [newOrders, setNewOrders] = useState([]);
   const [socketOn, setSocketOn] = useState(false);
-  // console.log(orders);
-  // console.log(user);
-  // useEffect(() => {
-  //     const results = async () => {
-  //       try {
-  //         const res = await http.get('/admin/getProducts');
-  //         setProducts(res.data);
-  //       } catch (err) {
-  //         if (err.res) {
-  //           console.log(err.res.data.message);
-  //         } else {
-  //           console.log('Error: Network Error');
-  //         }
-  //       }
-  //     };
-  //     results();
-  // }, []);
-
-  // useEffect(() => {
-  //   // if(freshToken)
-  //   const results = async () => {
-  //     try {
-  //       const res = await http.get('/getAllUsers');
-  //       setUser(res.data);
-  //     } catch (err) {
-  //       if (err.res) {
-  //         console.log(err.res.data.message);
-  //       } else {
-  //         console.log('Error: Network Error');
-  //       }
-  //     }
-  //   };
-  //   results();
-  // }, []);
-  // useEffect(() => {
-  //   // if(freshToken)
-  //   const results = async () => {
-  //     try {
-  //       const res = await http.get('/admin/getAllOrders');
-  //       setOrders(res.data);
-  //     } catch (err) {
-  //       if (err.res) {
-  //         console.log(err.res.data.message);
-  //       } else {
-  //         console.log('Error: Network Error');
-  //       }
-  //     }
-  //   };
-  //   results();
-  // }, []);
 
   //========================================================================
   //-------------Socket.io---------------------------------------

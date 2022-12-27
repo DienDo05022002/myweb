@@ -18,7 +18,7 @@ const createProduct = () => {
     rating: '',
     numReviews: '',
     description: '',
-    reviews: '',
+    // reviews: '',
   });
   const [image, setImage] = useState();
   const [active, setActive] = useState('on');

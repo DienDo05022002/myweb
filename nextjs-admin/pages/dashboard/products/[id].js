@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import http from '../../../http/axiosApi';
+import { useRouter } from 'next/router'
 
 export async function getStaticPaths() {
   const res = await http.get('/products');
@@ -28,7 +29,7 @@ export async function getStaticProps(context) {
 
 const Updata = ({ results }) => {
   const getId = results.product._id;
-  console.log(getId);
+  // console.log(getId);
   const [product, setProduct] = useState({
     name: '',
     slug: '',
@@ -42,6 +43,7 @@ const Updata = ({ results }) => {
     description: '',
   });
   const [image, setImage] = useState([]);
+  const router = useRouter()
   useEffect(() => {
     (async (getId) => {
       try {
@@ -79,7 +81,7 @@ const Updata = ({ results }) => {
       }
     })(getId);
   }, [getId]);
-  console.log(product);
+  // console.log(product);
 
   const handleChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
@@ -101,11 +103,8 @@ const Updata = ({ results }) => {
     myUpload.open();
     return;
   };
-  // const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const file = await uploadFile(image);
-    // console.log(image);
 
     const newProduct = {
       image: image,
@@ -113,10 +112,10 @@ const Updata = ({ results }) => {
     };
 
     try {
-      const res = await http.patch(`/admin/updataProducts/${id}`, newProduct);
+      const res = await http.patch(`/admin/updataProducts/${getId}`, newProduct);
       if (res.data.success) console.log(res.data);
+      router.push("/dashboard/products/pageProducts")
       toast.success('Updata Successfully');
-      // navigate('/admin-page/products');
     } catch (err) {
       toast.error('Faild');
       console.log({ err });

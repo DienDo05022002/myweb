@@ -41,7 +41,7 @@ router.get('/getAllUsers', async (req, res, next) => {
   }
 });
 
-router.get('/getUsers/:id', verifyAdmin, async (req, res, next) => {
+router.get('/getUsers/:id', async (req, res, next) => {
   try {
     const users = await User.findOne({ _id: req.params.id }).select(
       '-password'
@@ -73,12 +73,14 @@ router.patch('/updataUsers/:id', async (req, res, next) => {
   // const conditionUpdate = { _id: req.params.id };
   const { id } = req.params;
   const { password } = req.body;
+  console.log(req.body)
   if (!password)
   return res
     .status(400)
     .json({ error: { name: err.name, messgae: 'Enter password' } });
 
-  const hashPassword = await argon2.hash(password);
+  const hashPassword = await argon2.hash(password)
+  console.log(hashPassword)
   try {
     const checkUpdate = await User.findOneAndUpdate(
       id, 
