@@ -8,7 +8,7 @@ var authTokens = Cookies.get('tokens')
 // const storeTokens = Cookies.get('tokens');
 console.log(authTokens)
 const http = axios.create({
-  baseURL: 'https://myweb-sever-05022002.onrender.com/v1',
+  baseURL: 'https://myweb-sever.onrender.com/v1',
   headers: { Authorization: `Bearer ${authTokens}` },
 });
 http.interceptors.request.use(async (req) => {
