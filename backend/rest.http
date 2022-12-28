@@ -6,7 +6,7 @@ GET http://localhost:3010/v1
 ########################################################################
 
 ### Products/ Get-all
-GET http://localhost:3010/v1/products
+GET http://localhost:9000/v1/products
 
 
 
