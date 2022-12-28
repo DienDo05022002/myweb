@@ -10,20 +10,20 @@ const path = require('path');
 var morgan = require('morgan');
 var helmet = require('helmet');
 var createError = require('http-errors');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 require('dotenv').config();
 
 const severRoute = require('./api/index');
 
 mongoose
-  .connect(process.env.CONNECT_MONGODB)
+  .connect(process.env.CONNECT_MONGODB_ATLAT)
   .then(() => {
     console.log('connected successfully');
   })
   .catch((err) => {
     console.log(err.message);
   });
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(morgan('combined'));
 app.use(helmet());
 app.use(express.json());
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(
   cors({
     origin: '*',
-  }),
+  })
 );
 
 // app.use(bodyParser.urlencoded({ extended: false }));
