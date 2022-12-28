@@ -1,9 +1,10 @@
 import axios from 'axios';
-export const WEB_SEVER_URL = 'http://localhost:3010';
+export const WEB_SEVER_URL = 'https://myweb-sever-05022002.onrender.com';
+
 
 let authTokens = localStorage.getItem('tokens') || null;
 const http = axios.create({
-  baseURL: 'http://localhost:3010/v1',
+  baseURL: 'https://myweb-sever-05022002.onrender.com/v1',
   headers: { Authorization: `Bearer ${authTokens}` },
   // withCredentials: true,
   // headers: { Authorization: `Bearer ${authTokens}` }
