@@ -140,7 +140,7 @@ console.log({cart})
                     <i className="fas fa-bars header-nav-icon"></i>
                   </Button>
                   <Link to="/" className="header-nav-button-home">
-                    Trang chu
+                    Trang chủ
                   </Link>
 
                   {/* ---------------------------------------------------------------------- */}

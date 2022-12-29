@@ -59,12 +59,12 @@ main {
 .checkout-steps > div.active {
   border-bottom: 0.2rem solid rgb(0, 140, 255);
   /* color: #f08000; */
-  color: orange
+  color: orange;
 }
 .checkout-steps-div {
-  margin: 10px 30px
+  margin: 10px 30px;
 }
-.shipping-main{
+.shipping-main {
   margin: 25px 50px;
   /* justify-content: center */
 }
@@ -145,7 +145,7 @@ button.thumbnail {
 .menu-bar {
   display: flex;
   /* background-color: rgb(255, 231, 235); */
-  padding: 15px 0
+  padding: 15px 0;
 }
 .cart-empty {
   background-color: pink;
@@ -170,14 +170,14 @@ button.thumbnail {
   /* margin-top: 10px;
   display: flex; */
 }
-.ship-button-link{
+.ship-button-link {
   color: whitesmoke;
 }
 .PlaceOrderScreen {
   margin-left: 4%;
-    margin-top: 30px;
-    margin-right: 4%;
-} 
+  margin-top: 30px;
+  margin-right: 4%;
+}
 .place--order--button {
   background-color: whitesmoke;
   color: #333333;
@@ -192,7 +192,7 @@ button.thumbnail {
   justify-content: center;
 }
 .img-footer {
-  width: 180px
+  width: 180px;
 }
 .header-nav-icon {
   color: white;
@@ -201,17 +201,17 @@ button.thumbnail {
 }
 .header-nav-button-home {
   color: white;
-    font-size: larger;
-    font-weight: 700;
-    text-decoration: none;
-    margin-left: 10px;
-    margin-top: 5px;
+  font-size: larger;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 .search-img-product {
-  width:80px
+  width: 80px;
 }
 .search-name-product {
-  margin-left:10px;
+  margin-left: 10px;
   text-decoration: none;
   color: #333;
   font-weight: 500;
@@ -219,7 +219,7 @@ button.thumbnail {
 
 .search-link {
   padding: 10px;
-  display:flex;
+  display: flex;
   border: 0.05px solid #3333331f;
 }
 .icon-price {
@@ -248,7 +248,7 @@ button.thumbnail {
   display: block;
 }
 .contaner-message-close {
-  display: none
+  display: none;
 }
 .contaner-message--chat {
   position: relative;
@@ -292,7 +292,7 @@ button.thumbnail {
   color: whitesmoke;
 }
 .contaner-message-name {
-  width:190px;
+  width: 190px;
   padding-left: 20px;
   margin-left: auto;
   font-size: 0.75rem;
@@ -300,18 +300,18 @@ button.thumbnail {
   border-radius: 7px;
 }
 .contaner-message-text {
-  width:100%;
+  width: 100%;
   margin-left: auto;
 }
 .contaner-message-overview {
   background-color: rgba(11, 11, 253, 0.74);
-  color:white;
+  color: white;
   border-radius: 7px;
   margin-left: 10px;
   padding-left: 10px;
 }
 .contaner-message-enemy {
-  width:190px;
+  width: 190px;
   /* padding-left: 20px;
   margin-left: auto; */
   font-size: 0.75rem;
@@ -320,22 +320,22 @@ button.thumbnail {
   padding-left: 10px;
 }
 .contaner-message-text-enemy {
-  width:100%;
+  width: 100%;
   margin-left: auto;
 }
 .contaner-message-overview-enemy {
   background-color: #e4e6eb;
-  color:#333;
+  color: #333;
   border-radius: 7px;
   padding-left: 10px;
 }
 .Topcss-img {
   width: 350px;
-  height: 390px
+  height: 390px;
 }
 .Topcss-container {
   margin: 10px 25px;
-  box-shadow :0 5px 10px 10px #ccc;
+  box-shadow: 0 5px 10px 10px #ccc;
 }
 .Topcss-card {
   position: relative;
@@ -355,7 +355,8 @@ button.thumbnail {
   position: absolute;
   bottom: 11px;
   right: 30px;
-  background: rgba(230, 230, 250, 0.534);
+  /* background: rgba(230, 230, 250, 0.534); */
+  background: whitesmoke
 }
 .Topcss-span {
   color: orange;
@@ -378,34 +379,34 @@ button.thumbnail {
   box-shadow: 0 6px 10px 9px rgb(180, 180, 180);
 }
 .order-success {
-  background-color: rgba(60, 250, 60, 0.788)
+  background-color: rgba(60, 250, 60, 0.788);
 }
 .order-notyet {
-  background-color: rgba(253, 34, 34, 0.733)
+  background-color: rgba(253, 34, 34, 0.733);
 }
 .numberPage {
   padding: 7px 15px;
-    background: darkgray;
-    border: 1px solid darkgray;
-    border-radius: 10px;
-    margin: 0 3px;
+  background: darkgray;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  margin: 0 3px;
 }
 .css-discount {
   position: relative;
 }
 .css-percentDiscount {
-    position: absolute;
-    background-color: rgb(226, 223, 57);
-    padding: 3px 5px;
-    top: 0;
-    right: 0;
+  position: absolute;
+  background-color: rgb(226, 223, 57);
+  padding: 3px 5px;
+  top: 0;
+  right: 0;
 }
 .css-percentDiscount-text {
   color: white;
   padding-right: 5px;
 }
 .css-percentDiscount-percent {
-  color: red
+  color: red;
 }
 .price-original {
   display: flex;
@@ -424,17 +425,15 @@ button.thumbnail {
   font-weight: bold;
 }
 .background-price {
-  background-color:#fafafa
+  background-color: #fafafa;
 }
 
 /* PC */
 @media (min-width: 1024px) {
-  
 }
 
 /* Table */
-@media (min-width: 740px) and (max-width:1023px) {
-  
+@media (min-width: 740px) and (max-width: 1023px) {
 }
 
 /* Mobile */

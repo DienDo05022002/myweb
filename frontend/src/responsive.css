@@ -1,6 +1,5 @@
 /* Table */
-@media (min-width: 740px) and (max-width:1023px) {
-  
+@media (min-width: 740px) and (max-width: 1023px) {
 }
 
 /* Mobile */
@@ -60,5 +59,14 @@
   }
   .contaner-message-input {
     width: 245px;
+  }
+  .Topcss-card {
+    height: 484px;
+  }
+  .product {
+    height: 600px;
+    border: 1px #404040 solid;
+    margin: 0.5rem;
+    padding: 5px;
   }
 }
