@@ -1,0 +1,64 @@
+/* Table */
+@media (min-width: 740px) and (max-width:1023px) {
+  
+}
+
+/* Mobile */
+@media (min-width: 320px) and (max-width: 740px) {
+  .container-login {
+    display: block !important;
+    margin: 10px 0 !important;
+  }
+  .login-item-img {
+    width: 100% !important;
+  }
+  .row-detail {
+    margin: 0px !important;
+  }
+  .comment-container {
+    background-color: #e4e6eb !important;
+    margin: 0px 0px !important;
+    padding: 20px 10px !important;
+    border-top: 1px solid !important;
+  }
+  .floating-button {
+    position: absolute;
+    /* right: 10px !important; */
+    left: 0px !important;
+  }
+  .contaner-message--button {
+    right: 30px !important;
+    /* top: 5px !important; */
+  }
+  .active-nav {
+    height: 40%;
+  }
+  .div-top-h2 {
+    width: 100% !important;
+  }
+  .input-search {
+    margin-left: 10px !important;
+  }
+  .header-nav-user {
+    width: 100%;
+  }
+  .responsive-mobile-div {
+    margin-left: 10px !important;
+  }
+  .shipping-main {
+    margin: 0px !important;
+  }
+  .contaner-message {
+    left: 0px !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    top: 0px;
+  }
+  .contaner-message-send {
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+  .contaner-message-input {
+    width: 245px;
+  }
+}

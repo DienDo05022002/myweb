@@ -50,7 +50,7 @@ const CartScreen = () => {
     });
   };
   return (
-    <div style={{ marginLeft: '50px', marginRight: '10px' }}>
+    <div style={{ marginLeft: '50px', marginRight: '10px' }} className='responsive-mobile-div'>
       <div>Giỏ Hàng</div>
       <div>
         <Row>

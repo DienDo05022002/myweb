@@ -53,13 +53,13 @@ const HistoryOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
+          {orders.map((order, index) => (
             <tr key={order?._id} 
             className={
               order.isPaid && order.isDelivered === true ? 'order-success' : 'order-notyet'
             }
             >
-              <td>{order?._id}</td>
+              <td>{index}</td>
               <td>{order.createdAt.substring(0, 10)} {''} ({order.createdAt.substring(11, 19)})</td>
               <td>{order.totalOrders}.000₫</td>
               <td>{order.isPaid === true 
