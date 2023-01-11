@@ -1,3 +1,12 @@
 # myweb
+A sales website
 
-###Link demo : https://myweb-pnks-diendo05022002.vercel.app/
+Link demo project:  https://myweb-pnks-diendo05022002.vercel.app/
+
+# Technology
+| -NodeJS
+| -ExpressJs
+| -MongoDB
+| -ReactJS
+| -NextJS
+| -Socket.io
